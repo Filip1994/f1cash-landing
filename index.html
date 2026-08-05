@@ -105,6 +105,34 @@
             display: block;
             opacity: 1;
         }
+
+        /* Modern Entrance & Scroll Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal-on-load {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .reveal-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="text-white font-sans antialiased selection:bg-cyan-electric selection:text-slate-darkest">
@@ -128,7 +156,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="relative py-20 lg:py-28 overflow-hidden border-b border-slate-border text-center">
+    <section class="relative py-20 lg:py-28 overflow-hidden border-b border-slate-border text-center reveal-on-load">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="inline-flex items-center space-x-2 bg-slate-card/90 border border-cyan-electric/30 px-4 py-2 rounded-full mb-8 text-xs text-white backdrop-blur-sm shadow-sm">
                 <span class="text-cyan-electric font-bold">⚡ 4-Hour Approvals</span>
@@ -145,7 +173,7 @@
     </section>
 
     <!-- Portfolio Solutions Showcase Grid -->
-    <section id="products" class="py-20 border-b border-slate-border">
+    <section id="products" class="py-20 border-b border-slate-border reveal-scroll">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-xs uppercase tracking-widest text-cyan-electric font-bold mb-2">Portfolio Solutions</h2>
@@ -209,7 +237,7 @@
     </section>
 
     <!-- Execution Protocol / How It Works -->
-    <section id="how-it-works" class="py-20 border-b border-slate-border">
+    <section id="how-it-works" class="py-20 border-b border-slate-border reveal-scroll">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-xs uppercase tracking-widest text-cyan-electric font-bold mb-2">Execution Protocol</h2>
@@ -495,6 +523,22 @@
     <script>
         let currentStep = 1;
         const totalSteps = 4;
+
+        // Scroll Reveal Observer Initialization
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.reveal-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        });
 
         function formatCurrency(input) {
             let value = input.value.replace(/[^0-9]/g, '');
