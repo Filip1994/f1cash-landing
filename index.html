@@ -86,7 +86,8 @@
 
         .wet-signature-font { font-family: 'Caveat', cursive; }
 
-        input[type="date"]::-webkit-calendar-picker-indicator {
+        input[type="date"]::-webkit-calendar-picker-indicator,
+        input[type="month"]::-webkit-calendar-picker-indicator {
             filter: invert(1);
             cursor: pointer;
         }
@@ -342,7 +343,7 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Business Start Date *</label>
-                                <input type="text" name="start_date" required maxlength="7" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
+                                <input type="month" name="start_date" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Amount Requested ($) *</label>
@@ -742,6 +743,14 @@
             const formData = new FormData(form);
             const object = Object.fromEntries(formData);
             object.digital_signature_consent = document.querySelector('input[name="digital_signature_consent"]').checked;
+
+            // Convert start_date from YYYY-MM (browser month picker) to MM-YYYY
+            if (object.start_date) {
+                const parts = object.start_date.split('-');
+                if (parts.length === 2) {
+                    object.start_date = `${parts[1]}-${parts[0]}`;
+                }
+            }
 
             const categorySelect = document.getElementById('business_category');
             const selectedCategory = categorySelect ? categorySelect.value : "Other";
