@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,85 +22,148 @@
     }
   </script>
 </head>
-<body class="bg-slate-darkest text-white min-h-screen flex flex-col justify-between p-4 md:p-8">
-  <div class="max-w-xl w-full mx-auto bg-slate-dark border-2 border-neon-cyan p-6 md:p-10 rounded shadow-2xl">
-    
-    <div class="text-3xl font-black italic tracking-wider mb-6 text-center">
-      F1<span class="text-neon-cyan">CASH</span>
+<body class="bg-slate-darkest text-white min-h-screen flex flex-col justify-between font-sans">
+
+  <!-- Navigation Bar -->
+  <header class="border-b border-slate-border bg-slate-dark/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="text-2xl font-black italic tracking-wider">
+        F1<span class="text-neon-cyan">CASH</span>
+      </div>
+      <nav class="hidden md:flex space-x-6 text-xs font-bold uppercase text-slate-300">
+        <a href="#features" class="hover:text-neon-cyan transition-colors">Programs</a>
+        <a href="#about" class="hover:text-neon-cyan transition-colors">Advisory</a>
+        <a href="#apply" class="text-neon-cyan">Apply Now</a>
+      </nav>
+      <a href="#apply" class="bg-neon-cyan text-slate-darkest text-xs font-extrabold uppercase px-4 py-2 rounded hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] transition-all">
+        Get Funded
+      </a>
     </div>
+  </header>
 
-    <form id="fundingForm" class="space-y-6">
-      <!-- Honeypot Anti-Spam Field -->
-      <input type="text" name="website_url" id="website_url" style="display:none" tabindex="-1" autocomplete="off">
+  <!-- Hero Section -->
+  <section class="py-16 md:py-24 px-4 text-center max-w-4xl mx-auto">
+    <h1 class="text-3xl md:text-5xl font-black uppercase tracking-tight mb-6">
+      Fast, Reliable Capital for <span class="text-neon-cyan">Ambitious Businesses</span>
+    </h1>
+    <p class="text-sm md:text-base text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+      Unlock merchant cash advances and commercial funding solutions tailored to your cash flow. Simple underwriting, zero hidden fees, and capital deployed in as little as 24 hours.
+    </p>
+    <a href="#apply" class="inline-block bg-neon-cyan text-slate-darkest font-extrabold px-8 py-4 rounded text-xs uppercase tracking-widest hover:shadow-[0_0_25px_rgba(0,240,255,0.5)] transition-all">
+      Start Your Application ➔
+    </a>
+  </section>
 
-      <!-- 01 / Personal Information -->
-      <div class="space-y-4">
-        <h2 class="text-xs font-extrabold uppercase text-neon-cyan tracking-widest border-l-2 border-neon-cyan pl-2">01 / Personal Information</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">First Name *</label><input type="text" name="first_name" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
-          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Last Name *</label><input type="text" name="last_name" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Work Email *</label><input type="email" name="email" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
-          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Phone Number *</label><input type="tel" name="phone" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">SSN *</label><input type="text" name="ssn" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
-          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Date of Birth *</label><input type="date" name="dob" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
-        </div>
+  <!-- Features Grid -->
+  <section id="features" class="py-12 px-4 bg-slate-dark/40 border-y border-slate-border">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-slate-dark border border-slate-border p-6 rounded">
+        <div class="text-neon-cyan font-black text-lg mb-2">01 / SPEED</div>
+        <h3 class="font-bold text-sm uppercase mb-2">Rapid Deployment</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">Get funded within 24 to 48 hours of document verification with streamlined digital underwriting.</p>
+      </div>
+      <div class="bg-slate-dark border border-slate-border p-6 rounded">
+        <div class="text-neon-cyan font-black text-lg mb-2">02 / FLEXIBILITY</div>
+        <h3 class="font-bold text-sm uppercase mb-2">Revenue-Based Terms</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">Repayments scale dynamically with your monthly credit card and bank deposit volumes.</p>
+      </div>
+      <div class="bg-slate-dark border border-slate-border p-6 rounded">
+        <div class="text-neon-cyan font-black text-lg mb-2">03 / ADVISORY</div>
+        <h3 class="font-bold text-sm uppercase mb-2">Expert Guidance</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">Work directly with dedicated commercial funding specialists to structure optimal capital packages.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Application Form Section -->
+  <section id="apply" class="py-16 px-4">
+    <div class="max-w-xl w-full mx-auto bg-slate-dark border-2 border-neon-cyan p-6 md:p-10 rounded shadow-2xl">
+      
+      <div class="text-2xl font-black italic tracking-wider mb-6 text-center">
+        F1<span class="text-neon-cyan">CASH</span> — SECURE APPLICATION
       </div>
 
-      <!-- 02 / Home Address -->
-      <div class="space-y-4 pt-4 border-t border-slate-border">
-        <h2 class="text-xs font-extrabold uppercase text-neon-cyan tracking-widest border-l-2 border-neon-cyan pl-2">02 / Home Address</h2>
-        <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Home Street Address *</label><input type="text" name="home_address" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
-        <div class="grid grid-cols-3 gap-2">
-          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">City *</label><input type="text" name="home_city" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
-          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">State *</label><input type="text" name="home_state" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
-          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Zip *</label><input type="text" name="home_zip" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
-        </div>
-      </div>
+      <form id="fundingForm" class="space-y-6">
+        <!-- Honeypot Anti-Spam Field -->
+        <input type="text" name="website_url" id="website_url" style="display:none" tabindex="-1" autocomplete="off">
 
-      <!-- 03 / Business Details -->
-      <div class="space-y-4 pt-4 border-t border-slate-border">
-        <h2 class="text-xs font-extrabold uppercase text-neon-cyan tracking-widest border-l-2 border-neon-cyan pl-2">03 / Business Details</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Legal Business Name *</label><input type="text" name="business_name" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
-          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Federal Tax ID (EIN) *</label><input type="text" name="ein" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+        <!-- 01 / Personal Information -->
+        <div class="space-y-4">
+          <h2 class="text-xs font-extrabold uppercase text-neon-cyan tracking-widest border-l-2 border-neon-cyan pl-2">01 / Personal Information</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">First Name *</label><input type="text" name="first_name" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+            <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Last Name *</label><input type="text" name="last_name" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Work Email *</label><input type="email" name="email" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+            <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Phone Number *</label><input type="tel" name="phone" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">SSN *</label><input type="text" name="ssn" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+            <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Date of Birth *</label><input type="date" name="dob" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Entity Type / Category *</label><input type="text" name="entity_type" required placeholder="e.g. LLC / Retail" class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
-          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">START DATE *</label><input type="text" name="start_date" required placeholder="MM-YYYY" maxlength="7" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Requested Amount ($) *</label><input type="text" name="requested_amount" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
-        </div>
-        <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Business Street Address *</label><input type="text" name="business_address" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
-        <div class="grid grid-cols-3 gap-2">
-          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">City *</label><input type="text" name="business_city" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
-          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">State *</label><input type="text" name="business_state" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
-          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Zip *</label><input type="text" name="business_zip" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
-        </div>
-      </div>
 
-      <!-- 04 / Verification & Documents -->
-      <div class="space-y-4 pt-4 border-t border-slate-border">
-        <h2 class="text-xs font-extrabold uppercase text-neon-cyan tracking-widest border-l-2 border-neon-cyan pl-2">04 / Verification & Documents</h2>
-        <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Upload Bank Statements</label><input type="file" id="formFiles" multiple accept=".pdf,.png,.jpg,.jpeg" class="w-full text-xs text-slate-300 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-neon-cyan file:text-slate-darkest font-semibold cursor-pointer"></div>
-        <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Digital Signature Name *</label><input type="text" name="signature_name" required placeholder="Type Full Legal Name" class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
-        <div class="flex items-center space-x-2 pt-2">
-          <input type="checkbox" name="digital_signature_consent" id="consent" required class="w-4 h-4 accent-neon-cyan">
-          <label for="consent" class="text-xs text-slate-300">I authorize F1 Cash to perform credit pulls and process underwriting documents.</label>
+        <!-- 02 / Home Address -->
+        <div class="space-y-4 pt-4 border-t border-slate-border">
+          <h2 class="text-xs font-extrabold uppercase text-neon-cyan tracking-widest border-l-2 border-neon-cyan pl-2">02 / Home Address</h2>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Home Street Address *</label><input type="text" name="home_address" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          <div class="grid grid-cols-3 gap-2">
+            <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">City *</label><input type="text" name="home_city" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+            <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">State *</label><input type="text" name="home_state" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+            <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Zip *</label><input type="text" name="home_zip" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          </div>
         </div>
-      </div>
 
-      <button type="submit" id="submitBtn" class="w-full bg-neon-cyan text-slate-darkest font-extrabold py-3 rounded text-xs uppercase tracking-wider hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all">
-        Submit Funding Application
-      </button>
+        <!-- 03 / Business Details -->
+        <div class="space-y-4 pt-4 border-t border-slate-border">
+          <h2 class="text-xs font-extrabold uppercase text-neon-cyan tracking-widest border-l-2 border-neon-cyan pl-2">03 / Business Details</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Legal Business Name *</label><input type="text" name="business_name" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+            <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Federal Tax ID (EIN) *</label><input type="text" name="ein" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Entity Type / Category *</label><input type="text" name="entity_type" required placeholder="e.g. LLC / Retail" class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+            <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">START DATE *</label><input type="text" name="start_date" required placeholder="MM-YYYY" maxlength="7" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Requested Amount ($) *</label><input type="text" name="requested_amount" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          </div>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Business Street Address *</label><input type="text" name="business_address" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          <div class="grid grid-cols-3 gap-2">
+            <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">City *</label><input type="text" name="business_city" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+            <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">State *</label><input type="text" name="business_state" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+            <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Zip *</label><input type="text" name="business_zip" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          </div>
+        </div>
 
-      <div id="formStatus" class="text-xs font-bold text-center"></div>
-    </form>
-  </div>
+        <!-- 04 / Verification & Documents -->
+        <div class="space-y-4 pt-4 border-t border-slate-border">
+          <h2 class="text-xs font-extrabold uppercase text-neon-cyan tracking-widest border-l-2 border-neon-cyan pl-2">04 / Verification & Documents</h2>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Upload Bank Statements</label><input type="file" id="formFiles" multiple accept=".pdf,.png,.jpg,.jpeg" class="w-full text-xs text-slate-300 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-neon-cyan file:text-slate-darkest font-semibold cursor-pointer"></div>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Digital Signature Name *</label><input type="text" name="signature_name" required placeholder="Type Full Legal Name" class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          <div class="flex items-center space-x-2 pt-2">
+            <input type="checkbox" name="digital_signature_consent" id="consent" required class="w-4 h-4 accent-neon-cyan">
+            <label for="consent" class="text-xs text-slate-300">I authorize F1 Cash to perform credit pulls and process underwriting documents.</label>
+          </div>
+        </div>
+
+        <button type="submit" id="submitBtn" class="w-full bg-neon-cyan text-slate-darkest font-extrabold py-3 rounded text-xs uppercase tracking-wider hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all">
+          Submit Funding Application
+        </button>
+
+        <div id="formStatus" class="text-xs font-bold text-center"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-slate-dark border-t border-slate-border py-8 px-4 text-center text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto space-y-2">
+      <p>&copy; 2026 F1 Cash Capital Advisory & Brokerage Services. All rights reserved.</p>
+      <p class="text-[10px] text-slate-600">Confidential Commercial Financing Portal. Submitting an application authorizes verification of commercial credit and banking history.</p>
+    </div>
+  </footer>
 
   <script>
     const WEB_APP_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL"; // <-- Replace with your live web app deployment URL
@@ -116,7 +179,7 @@
       const formDataObj = {};
       const formData = new FormData(this);
       formData.forEach((value, key) => { if(key !== 'files') formDataObj[key] = value; });
-      formDataObj.digital_signature_consent = document.getElementById('consent').checked;
+      formDataObj.digital_signature_consent = document.getElementById('consent'].checked;
 
       const fileInput = document.getElementById('formFiles');
       if(fileInput.files.length > 0) {
