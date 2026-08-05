@@ -8,6 +8,10 @@
     <!-- TAILWIND CSS CDN SCRIPT -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- GOOGLE MAPS PLACES AUTOCOMPLETE API -->
+    <!-- Replace YOUR_GOOGLE_MAPS_API_KEY with your actual Google Cloud API Key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places"></script>
+
     <!-- TAILWIND CUSTOM THEME CONFIGURATION -->
     <script>
         tailwind.config = {
@@ -39,6 +43,22 @@
         .glow-border:hover {
             border-color: #00F0FF;
             box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+        }
+        /* Custom styling for Google Autocomplete dropdown in dark mode */
+        .pac-container {
+            background-color: #111827 !important;
+            border: 1px solid #1F2937 !important;
+            font-family: sans-serif;
+        }
+        .pac-item {
+            color: #9CA3AF !important;
+            border-top: 1px solid #1F2937 !important;
+        }
+        .pac-item:hover {
+            background-color: #1F2937 !important;
+        }
+        .pac-item-query {
+            color: #00F0FF !important;
         }
     </style>
 </head>
@@ -189,70 +209,165 @@
         </div>
     </section>
 
-    <!-- Lead Intake & Application Form -->
+    <!-- Full Underwriting Lead Application Form -->
     <section id="apply" class="py-20 bg-navy-dark">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-navy-card border border-navy-border p-8 sm:p-12 rounded-sm shadow-2xl relative">
                 <div class="text-center mb-10">
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-2">Start Your Business Application</h2>
-                    <p class="text-sm text-gray-400">Complete the form below to generate your underwriting PDF profile.</p>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-2">Full Business Funding Application</h2>
+                    <p class="text-sm text-gray-400">Complete all required fields below to generate your underwriting PDF file.</p>
                 </div>
 
                 <form id="leadForm" class="space-y-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Business Name</label>
-                            <input type="text" name="business_name" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" placeholder="Apex Logistics LLC">
+                    
+                    <!-- Section 1: Personal Applicant Information -->
+                    <div class="border-b border-navy-border pb-6">
+                        <h3 class="text-sm font-bold text-cyan-electric uppercase tracking-wider mb-4">1. Personal Identity Details</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">First Name</label>
+                                <input type="text" name="first_name" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" placeholder="John">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Last Name</label>
+                                <input type="text" name="last_name" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" placeholder="Doe">
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Full Name</label>
-                            <input type="text" name="full_name" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" placeholder="John Doe">
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Work Email</label>
+                                <input type="email" name="email" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" placeholder="john@apexlogistics.com">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Phone Number (10 Digits)</label>
+                                <input 
+                                    type="tel" 
+                                    name="phone" 
+                                    required 
+                                    pattern="[0-9]{10}" 
+                                    maxlength="10" 
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                    title="Please enter a valid 10-digit US phone number"
+                                    class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" 
+                                    placeholder="5551234567"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Social Security Number (SSN)</label>
+                                <input 
+                                    type="text" 
+                                    name="ssn" 
+                                    required 
+                                    maxlength="11"
+                                    oninput="this.value = this.value.replace(/[^0-9-]/g, '')"
+                                    class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" 
+                                    placeholder="XXX-XX-XXXX"
+                                >
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Date of Birth</label>
+                                <input type="date" name="dob" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm">
+                            </div>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Work Email</label>
-                            <input type="email" name="email" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" placeholder="john@apexlogistics.com">
+                    <!-- Section 2: Home Address Information -->
+                    <div class="border-b border-navy-border pb-6">
+                        <h3 class="text-sm font-bold text-cyan-electric uppercase tracking-wider mb-4">2. Home Address</h3>
+                        <div class="grid grid-cols-1 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Home Street Address (Google Search)</label>
+                                <input id="home_address" type="text" name="home_address" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" placeholder="Start typing home street address...">
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Phone Number (10 Digits)</label>
-                            <input 
-                                type="tel" 
-                                name="phone" 
-                                required 
-                                pattern="[0-9]{10}" 
-                                maxlength="10" 
-                                oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                                title="Please enter a valid 10-digit US phone number"
-                                class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" 
-                                placeholder="5551234567"
-                            >
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Monthly Revenue</label>
-                            <select name="monthly_revenue" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm">
-                                <option value="" disabled selected>Select Monthly Revenue</option>
-                                <option value="0-10k">$0 – $10k</option>
-                                <option value="10k-50k">$10k – $50k</option>
-                                <option value="50k+">$50k+</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Time in Business</label>
-                            <select name="time_in_business" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm">
-                                <option value="" disabled selected>Select Timeframe</option>
-                                <option value="0-6m">Under 6 Months</option>
-                                <option value="6m-1y">6 Months – 1 Year</option>
-                                <option value="1y-3y">1 – 3 Years</option>
-                                <option value="3y+">3+ Years</option>
-                            </select>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">City</label>
+                                <input id="home_city" type="text" name="home_city" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" placeholder="City">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">State</label>
+                                <input id="home_state" type="text" name="home_state" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" placeholder="State">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Zip Code</label>
+                                <input id="home_zip" type="text" name="home_zip" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" placeholder="Zip Code">
+                            </div>
                         </div>
                     </div>
 
+                    <!-- Section 3: Business Information & Business Address -->
+                    <div class="border-b border-navy-border pb-6">
+                        <h3 class="text-sm font-bold text-cyan-electric uppercase tracking-wider mb-4">3. Business Details & Address</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Legal Business Name</label>
+                                <input type="text" name="business_name" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" placeholder="Apex Logistics LLC">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Industry</label>
+                                <select name="industry" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm">
+                                    <option value="" disabled selected>Select Industry</option>
+                                    <option value="Construction & Contracting">Construction & Contracting</option>
+                                    <option value="Trucking & Transportation">Trucking & Transportation</option>
+                                    <option value="Services & Consulting">Services & Consulting</option>
+                                    <option value="Retail & E-commerce">Retail & E-commerce</option>
+                                    <option value="Healthcare & Medical">Healthcare & Medical</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 gap-4 mt-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Business Street Address (Google Search)</label>
+                                <input id="business_address" type="text" name="business_address" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" placeholder="Start typing business street address...">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">City</label>
+                                <input id="business_city" type="text" name="business_city" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" placeholder="City">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">State</label>
+                                <input id="business_state" type="text" name="business_state" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" placeholder="State">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Zip Code</label>
+                                <input id="business_zip" type="text" name="business_zip" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" placeholder="Zip Code">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Monthly Revenue</label>
+                                <select name="monthly_revenue" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm">
+                                    <option value="" disabled selected>Select Monthly Revenue</option>
+                                    <option value="0-10k">$0 – $10k</option>
+                                    <option value="10k-50k">$10k – $50k</option>
+                                    <option value="50k+">$50k+</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Time in Business</label>
+                                <select name="time_in_business" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm">
+                                    <option value="" disabled selected>Select Timeframe</option>
+                                    <option value="0-6m">Under 6 Months</option>
+                                    <option value="6m-1y">6 Months – 1 Year</option>
+                                    <option value="1y-3y">1 – 3 Years</option>
+                                    <option value="3y+">3+ Years</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Compliance Checkbox -->
                     <div class="pt-2">
                         <label class="flex items-start space-x-3 text-xs text-gray-400 leading-relaxed cursor-pointer">
                             <input type="checkbox" name="a2p_sms_consent" value="accepted" required class="mt-1 h-4 w-4 bg-navy-dark border-navy-border rounded text-cyan-electric focus:ring-0">
@@ -291,9 +406,54 @@
         </div>
     </footer>
 
+    <!-- Google Maps Places Autocomplete Script -->
+    <script>
+        function initAutocomplete() {
+            if (typeof google === 'undefined' || !google.maps || !google.maps.places) return;
+
+            // Bind Autocomplete to Home Address input
+            const homeInput = document.getElementById('home_address');
+            const homeAutocomplete = new google.maps.places.Autocomplete(homeInput, { types: ['address'] });
+            homeAutocomplete.addListener('place_changed', () => {
+                const place = homeAutocomplete.getPlace();
+                fillAddressFields(place, 'home');
+            });
+
+            // Bind Autocomplete to Business Address input
+            const businessInput = document.getElementById('business_address');
+            const businessAutocomplete = new google.maps.places.Autocomplete(businessInput, { types: ['address'] });
+            businessAutocomplete.addListener('place_changed', () => {
+                const place = businessAutocomplete.getPlace();
+                fillAddressFields(place, 'business');
+            });
+        }
+
+        function fillAddressFields(place, prefix) {
+            if (!place.address_components) return;
+
+            let city = '', state = '', zip = '';
+
+            for (const component of place.address_components) {
+                const componentType = component.types[0];
+                if (componentType === 'locality') {
+                    city = component.long_name;
+                } else if (componentType === 'administrative_area_level_1') {
+                    state = component.short_name;
+                } else if (componentType === 'postal_code') {
+                    zip = component.long_name;
+                }
+            }
+
+            if (city) document.getElementById(`${prefix}_city`).value = city;
+            if (state) document.getElementById(`${prefix}_state`).value = state;
+            if (zip) document.getElementById(`${prefix}_zip`).value = zip;
+        }
+
+        window.addEventListener('load', initAutocomplete);
+    </script>
+
     <!-- Form Handler Script for Google Apps Script PDF Endpoint -->
     <script>
-        // YOUR LIVE GOOGLE APPS SCRIPT WEB APP URL
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxGu949gNHV5WcVrZE3YrRqCHfn7W_7c1phj2izPMAn0gLYr-w2Z6GJ21zS-rul108/exec";
 
         const form = document.getElementById('leadForm');
@@ -321,7 +481,7 @@
             .then(() => {
                 resultMessage.classList.remove('hidden', 'text-red-500');
                 resultMessage.classList.add('text-cyan-electric');
-                resultMessage.innerHTML = "⚡ Application Submitted & PDF Generated in Google Drive!";
+                resultMessage.innerHTML = "⚡ Full Application Submitted & PDF Generated in Google Drive!";
                 form.reset();
             })
             .catch(error => {
