@@ -47,7 +47,9 @@
             background-color: #0B132B;
             background-image: 
                 radial-gradient(circle at 50% 0%, #1C2541 0%, #0B132B 75%),
-                linear-gradient(135deg, #0B132B 0%, #131B31 100%);
+                linear-gradient(135deg, #0B132B 0%, #131B31 100%),
+                repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(0, 240, 255, 0.015) 50px, rgba(0, 240, 255, 0.015) 51px),
+                repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(0, 240, 255, 0.015) 50px, rgba(0, 240, 255, 0.015) 51px);
             background-attachment: fixed;
         }
 
@@ -106,23 +108,7 @@
             opacity: 1;
         }
 
-        /* Modern Entrance & Scroll Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(25px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .reveal-on-load {
-            opacity: 0;
-            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
+        /* Scroll Reveal Transitions */
         .reveal-scroll {
             opacity: 0;
             transform: translateY(30px);
@@ -132,6 +118,12 @@
         .reveal-scroll.active {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        .hero-fade {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
     </style>
 </head>
@@ -156,19 +148,23 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="relative py-20 lg:py-28 overflow-hidden border-b border-slate-border text-center reveal-on-load">
+    <section class="relative py-24 lg:py-32 overflow-hidden border-b border-slate-border text-center">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="inline-flex items-center space-x-2 bg-slate-card/90 border border-cyan-electric/30 px-4 py-2 rounded-full mb-8 text-xs text-white backdrop-blur-sm shadow-sm">
+            <div class="hero-fade inline-flex items-center space-x-2 bg-slate-card/90 border border-cyan-electric/30 px-4 py-2 rounded-full mb-8 text-xs text-white backdrop-blur-sm shadow-sm">
                 <span class="text-cyan-electric font-bold">⚡ 4-Hour Approvals</span>
                 <span class="text-slate-500">|</span>
                 <span class="text-cyan-electric font-bold">🚀 Same-Day Funding Deployment</span>
             </div>
-            <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-none mb-6">
-                Fast Commercial Capital to <br class="hidden sm:inline" />
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-electric via-cyan-200 to-blue-400">Accelerate Your Growth</span>
+            
+            <h1 id="random-title" class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-none mb-6 min-h-[3.5rem] sm:min-h-[7rem] flex flex-wrap justify-center items-center">
+                <!-- Populated dynamically via JS with random fading letters -->
             </h1>
-            <p class="max-w-3xl mx-auto text-lg text-slate-300 mb-10">Secure up to $250,000+ in working capital with zero equity dilution.</p>
-            <button onclick="openModal()" class="bg-cyan-electric text-slate-darkest font-extrabold text-base px-8 py-4 rounded-sm shadow-glow hover:shadow-glow-lg transition-all uppercase tracking-wider inline-block cursor-pointer">APPLY FOR FUNDING</button>
+
+            <p class="hero-fade max-w-3xl mx-auto text-lg text-slate-300 mb-10">Secure up to $250,000+ in working capital with zero equity dilution.</p>
+            
+            <div class="hero-fade">
+                <button onclick="openModal()" class="bg-cyan-electric text-slate-darkest font-extrabold text-base px-8 py-4 rounded-sm shadow-glow hover:shadow-glow-lg transition-all uppercase tracking-wider inline-block cursor-pointer">APPLY FOR FUNDING</button>
+            </div>
         </div>
     </section>
 
@@ -524,8 +520,41 @@
         let currentStep = 1;
         const totalSteps = 4;
 
-        // Scroll Reveal Observer Initialization
+        // Cinematic Random Letter Fade-In & Scroll Observers
         document.addEventListener("DOMContentLoaded", function() {
+            // Random Letter Fade-In Effect for Hero Title
+            const titleEl = document.getElementById('random-title');
+            const headlineText = "Fast Commercial Capital to Accelerate Your Growth";
+            titleEl.innerHTML = '';
+
+            const chars = headlineText.split('').map(char => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.style.opacity = '0';
+                span.style.transition = 'opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+                titleEl.appendChild(span);
+                return span;
+            });
+
+            // Randomize reveal sequence
+            const indices = Array.from({length: chars.length}, (_, i) => i);
+            indices.sort(() => Math.random() - 0.5);
+
+            indices.forEach((idx, order) => {
+                setTimeout(() => {
+                    chars[idx].style.opacity = '1';
+                }, order * 25 + Math.random() * 300);
+            });
+
+            // Fade in secondary hero items shortly after
+            setTimeout(() => {
+                document.querySelectorAll('.hero-fade').forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                });
+            }, 900);
+
+            // Scroll Reveal Observer
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
