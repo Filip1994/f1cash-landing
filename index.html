@@ -536,7 +536,7 @@
         function formatSSN(input) {
             let value = input.value.replace(/[^0-9]/g, '').slice(0, 9);
             if (value.length === 9) {
-                input.value = `${value.slice(0, 2)}-${value.slice(2, 9)}`;
+                input.value = `${value.slice(0, 3)}-${value.slice(3, 5)}-${value.slice(5, 9)}`;
             } else {
                 input.value = value;
             }
