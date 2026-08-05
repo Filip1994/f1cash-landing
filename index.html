@@ -1,19 +1,21 @@
 /**
- * F1 CASH — Google Apps Script Backend (Futuristic Baby Blue PDF Spec)
- * Receives full application data, renders a futuristic PDF document, and saves to Google Drive.
+ * F1 CASH — Google Apps Script Backend
+ * Creates a dedicated business subfolder in Google Drive, generates a futuristic PDF,
+ * and saves uploaded PDF bank statements into the subfolder.
  */
 
-// Target Google Drive Folder ID
-const DRIVE_FOLDER_ID = "12cHHQyLP5KD9cXNe5lOybLMuqz2TV4LC";
+// Your target Google Drive Parent Folder ID
+const MAIN_DRIVE_FOLDER_ID = "12cHHQyLP5KD9cXNe5lOybLMuqz2TV4LC";
 
 /**
  * Handles incoming POST requests from the website form
  */
 function doPost(e) {
   try {
+    // Parse the JSON payload sent by index.html
     const data = JSON.parse(e.postData.contents);
     
-    // Extract Applicant Identity
+    // 1. Extract Personal Identity Information
     const firstName = data.first_name || "N/A";
     const lastName = data.last_name || "N/A";
     const email = data.email || "N/A";
@@ -21,13 +23,13 @@ function doPost(e) {
     const ssn = data.ssn || "N/A";
     const dob = data.dob || "N/A";
     
-    // Extract Addresses
+    // 2. Extract Home Residence Details
     const homeAddress = data.home_address || "N/A";
     const homeCity = data.home_city || "N/A";
     const homeState = data.home_state || "N/A";
     const homeZip = data.home_zip || "N/A";
 
-    // Extract Business Details
+    // 3. Extract Business Profile & Location
     const businessName = data.business_name || "N/A";
     const industry = data.industry || "N/A";
     const businessAddress = data.business_address || "N/A";
@@ -35,12 +37,18 @@ function doPost(e) {
     const businessState = data.business_state || "N/A";
     const businessZip = data.business_zip || "N/A";
 
+    // 4. Extract Underwriting Metrics & Legal Consent
     const monthlyRevenue = data.monthly_revenue || "N/A";
     const timeInBusiness = data.time_in_business || "N/A";
-    const digitalSignature = data.digital_signature_consent ? "AUTHORIZED & SIGNED ELECTRONICALLY" : "NOT SIGNED";
+    const digitalSignature = data.digital_signature_consent ? "AUTHORIZED & ELECTRONICALLY SIGNED" : "NOT SIGNED";
     const submissionDate = new Date().toLocaleString();
 
-    // HTML Template for Futuristic Baby Blue PDF
+    // 5. Create dedicated Google Drive folder named after the Legal Business Name
+    const parentFolder = DriveApp.getFolderById(MAIN_DRIVE_FOLDER_ID);
+    const sanitizedFolderName = businessName.replace(/[^a-zA-Z0-9\s-_]/g, "").trim() || "Uncategorized_Application";
+    const businessSubFolder = parentFolder.createFolder(sanitizedFolderName);
+
+    // 6. Build Futuristic Baby Blue HTML Template for PDF Rendering
     const htmlContent = `
       <!DOCTYPE html>
       <html>
@@ -55,14 +63,13 @@ function doPost(e) {
             padding: 25px;
           }
           .container {
-            background-color: #0B0F17; /* Dark Slate Futuristic Card */
-            border: 2px solid #00F0FF;
+            background-color: #0B0F17; /* Dark Slate Card */
+            border: 2px solid #00F0FF; /* Neon Cyan Border */
             border-radius: 8px;
             padding: 25px;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
           }
           .header { 
-            border-b: 2px solid #00F0FF; 
+            border-bottom: 2px solid #00F0FF; 
             padding-bottom: 12px; 
             margin-bottom: 20px; 
           }
@@ -91,12 +98,11 @@ function doPost(e) {
             margin-top: 18px; 
             margin-bottom: 12px; 
             text-transform: uppercase;
-            letter-spacing: 1px;
           }
           .grid { display: table; width: 100%; margin-bottom: 5px; }
           .row { display: table-row; }
           .col { display: table-cell; width: 50%; padding-bottom: 8px; vertical-align: top; }
-          .label { font-weight: 700; font-size: 9px; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; }
+          .label { font-weight: 700; font-size: 9px; color: #64748B; text-transform: uppercase; }
           .value { font-size: 13px; color: #F8FAFC; font-weight: 600; margin-top: 2px; }
           .signature-box {
             background-color: #111827;
@@ -124,7 +130,7 @@ function doPost(e) {
             <div class="subtitle">Underwriting Application Profile — ${submissionDate}</div>
           </div>
 
-          <!-- Section 1: Applicant Details -->
+          <!-- Section 1: Applicant Personal Identity -->
           <div class="section-title">01 / Personal Identity</div>
           <div class="grid">
             <div class="row">
@@ -140,7 +146,7 @@ function doPost(e) {
             </div>
           </div>
 
-          <!-- Section 2: Home Location -->
+          <!-- Section 2: Home Residence -->
           <div class="section-title">02 / Home Residence</div>
           <div class="grid">
             <div class="row">
@@ -149,7 +155,7 @@ function doPost(e) {
             </div>
           </div>
 
-          <!-- Section 3: Business Details -->
+          <!-- Section 3: Business Profile -->
           <div class="section-title">03 / Business Profile</div>
           <div class="grid">
             <div class="row">
@@ -166,7 +172,7 @@ function doPost(e) {
             </div>
           </div>
 
-          <!-- Digital Signature Certification Box -->
+          <!-- Digital Signature Certification Block -->
           <div class="signature-box">
             <div class="sig-title">Digital Signature & Legal Authorization</div>
             <div class="sig-status">✓ ${digitalSignature}</div>
@@ -183,20 +189,31 @@ function doPost(e) {
       </html>
     `;
 
-    // Render HTML to PDF
+    // 7. Render PDF Document and store in the new Business Subfolder
     const htmlBlob = Utilities.newBlob(htmlContent, 'text/html', 'application.html');
     const pdfBlob = htmlBlob.getAs('application/pdf');
-    
-    const sanitizedBusiness = businessName.replace(/[^a-zA-Z0-9]/g, "_");
     const dateStamp = new Date().toISOString().split('T')[0];
-    pdfBlob.setName(`FullApp_${sanitizedBusiness}_${dateStamp}.pdf`);
+    pdfBlob.setName(`Application_${sanitizedFolderName}_${dateStamp}.pdf`);
+    businessSubFolder.createFile(pdfBlob);
 
-    // Write to Google Drive
-    const folder = DriveApp.getFolderById(DRIVE_FOLDER_ID);
-    const pdfFile = folder.createFile(pdfBlob);
+    // 8. Decode Base64 Bank Statement files and store in the same Subfolder
+    if (data.files && Array.isArray(data.files)) {
+      data.files.forEach(fileObj => {
+        if (fileObj.base64 && fileObj.name) {
+          const base64Data = fileObj.base64.split(',')[1] || fileObj.base64;
+          const fileBlob = Utilities.newBlob(
+            Utilities.base64Decode(base64Data), 
+            fileObj.mimeType || 'application/pdf', 
+            fileObj.name
+          );
+          businessSubFolder.createFile(fileBlob);
+        }
+      });
+    }
 
+    // Return Success Response
     return ContentService
-      .createTextOutput(JSON.stringify({ status: "success", fileUrl: pdfFile.getUrl() }))
+      .createTextOutput(JSON.stringify({ status: "success", folderUrl: businessSubFolder.getUrl() }))
       .setMimeType(ContentService.MimeType.JSON);
 
   } catch (error) {
