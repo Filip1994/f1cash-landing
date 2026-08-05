@@ -308,6 +308,11 @@
                                     <option value="Retail">Retail</option>
                                     <option value="Wholesale">Wholesale</option>
                                     <option value="Restaurant">Restaurant</option>
+                                    <option value="Transportation">Transportation</option>
+                                    <option value="Healthcare">Healthcare</option>
+                                    <option value="Auto Repair">Auto Repair</option>
+                                    <option value="E-Commerce">E-Commerce</option>
+                                    <option value="Construction">Construction</option>
                                     <option value="Other">Other</option>
                                 </select>
                             </div>
@@ -337,11 +342,11 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Business Start Date *</label>
-                                <input type="date" name="start_date" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
+                                <input type="text" name="start_date" required maxlength="7" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Amount Requested ($) *</label>
-                                <input type="text" name="requested_amount" required oninput="this.value = this.value.replace(/[^0-9$,.]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
+                                <input type="text" name="requested_amount" required oninput="formatCurrency(this)" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                             </div>
                         </div>
                     </div>
@@ -491,21 +496,86 @@
         let currentStep = 1;
         const totalSteps = 4;
 
+        function formatCurrency(input) {
+            let value = input.value.replace(/[^0-9]/g, '');
+            if (value) {
+                value = parseInt(value, 10).toLocaleString('en-US');
+                input.value = '$' + value;
+            } else {
+                input.value = '';
+            }
+        }
+
         const SUCCESS_STORIES = {
             "Service": [
-                { title: "$180,000 HVAC Fleet Expansion", metric: "+140% Quarterly Revenue", story: "An Austin HVAC service contractor secured $180,000 in working capital within 6 hours. They acquired 3 new service vans and hired 4 certified technicians, doubling their daily call capacity." }
+                { title: "$180,000 HVAC Fleet Expansion", metric: "+140% Quarterly Revenue", story: "An Austin HVAC service contractor secured $180,000 in working capital within 6 hours. They acquired 3 new service vans and hired 4 certified technicians, doubling their daily call capacity." },
+                { title: "$95,000 Equipment Upgrade", metric: "+85% Job Turnover", story: "A commercial plumbing business secured fast liquidity to purchase high-pressure hydro-jetting equipment, completing jobs twice as fast." },
+                { title: "$120,000 Marketing Blitz", metric: "+200% Lead Volume", story: "A residential roofing service deployed working capital into targeted digital ads right before storm season, booking back-to-back projects." },
+                { title: "$150,000 Staff Expansion", metric: "+60% Client Capacity", story: "An electrical contractor hired 5 licensed journeymen ahead of major commercial contracts, scaling their revenue instantly." },
+                { title: "$85,000 Working Capital Buffer", metric: "Zero Cash Flow Gaps", story: "A commercial cleaning enterprise bridged payroll gaps during a 90-day municipal invoice payment cycle without skipping a beat." }
             ],
             "Retail": [
-                { title: "$250,000 Q4 Inventory Liquidity", metric: "+210% Holiday Sales", story: "A boutique retail chain accessed $250,000 in 12 hours to lock in pre-season inventory discounts before peak Q4 shopping, yielding record revenue." }
+                { title: "$250,000 Q4 Inventory Liquidity", metric: "+210% Holiday Sales", story: "A boutique retail chain accessed $250,000 in 12 hours to lock in pre-season inventory discounts before peak Q4 shopping, yielding record revenue." },
+                { title: "$110,000 POS System Modernization", metric: "+35% Checkout Speed", story: "A specialty apparel storefront upgraded their hardware and inventory tracking, reducing checkout times significantly." },
+                { title: "$175,000 Bulk Stock Acquisition", metric: "+40% Profit Margins", story: "A regional gift retailer purchased bulk wholesale orders directly from manufacturers, bypassing costly third-party distributors." },
+                { title: "$90,000 Storefront Renovation", metric: "+50% Foot Traffic", story: "A downtown boutique utilized working capital to remodel their showroom and window displays just in time for spring." },
+                { title: "$130,000 E-Commerce Expansion", metric: "+300% Online Orders", story: "A brick-and-mortar bookstore launched a robust e-commerce storefront, opening up nationwide shipping revenue streams." }
             ],
             "Wholesale": [
-                { title: "$350,000 Import Logistics Expansion", metric: "10-Day Turnaround", story: "A regional beverage distributor secured $350k working capital to clear customs and fulfill nationwide supermarket purchase orders seamlessly." }
+                { title: "$350,000 Import Logistics Expansion", metric: "10-Day Turnaround", story: "A regional beverage distributor secured $350k working capital to clear customs and fulfill nationwide supermarket purchase orders seamlessly." },
+                { title: "$200,000 Warehouse Forklift Fleet", metric: "+65% Fulfillment Speed", story: "A industrial parts wholesaler upgraded their warehouse equipment to handle double the daily pallet volume." },
+                { title: "$280,000 Bulk Inventory Buyout", metric: "+55% Annual Net Income", story: "A consumer goods distributor secured manufacturer closeout pricing on high-demand electronics." },
+                { title: "$160,000 B2B Credit Line Buffer", metric: "Zero Delayed Shipments", story: "A wholesale textile supplier bridged net-60 payment terms from major department store clients smoothly." },
+                { title: "$220,000 Regional Hub Setup", metric: "+80% Geographic Reach", story: "A hardware supplier opened a secondary distribution warehouse in a neighboring state to cut shipping times." }
             ],
             "Restaurant": [
-                { title: "$140,000 Kitchen Equipment Overhaul", metric: "+45% Daily Covers", story: "A fine dining steakhouse deployed $140,000 in equipment capital to install commercial combi-ovens and expand patio seating before summer season." }
+                { title: "$140,000 Kitchen Equipment Overhaul", metric: "+45% Daily Covers", story: "A fine dining steakhouse deployed $140,000 in equipment capital to install commercial combi-ovens and expand patio seating before summer season." },
+                { title: "$75,000 Food Truck Launch", metric: "+120% Brand Exposure", story: "A popular local bistro funded a custom mobile food truck to cater private events and festivals across the region." },
+                { title: "$115,000 Patio Enclosure Buildout", metric: "Year-Round Seating", story: "A café installed a heated outdoor patio structure, keeping revenue strong through the winter months." },
+                { title: "$95,000 POS & Online Ordering Upgrade", metric: "+60% Takeout Revenue", story: "A family Italian eatery integrated mobile ordering apps and streamlined kitchen display systems." },
+                { title: "$180,000 Second Location Deposit", metric: "Immediate Expansion", story: "A thriving sushi restaurant secured commercial lease and buildout capital for a high-traffic downtown district." }
+            ],
+            "Transportation": [
+                { title: "$220,000 Semi-Truck Fleet Addition", metric: "+100% Freight Capacity", story: "A freight logistics company secured funding to purchase two new semi-trucks, immediately capitalizing on lucrative shipping contracts." },
+                { title: "$90,000 Emergency Engine Overhauls", metric: "Zero Fleet Downtime", story: "A regional moving company covered sudden heavy maintenance expenses without disrupting ongoing cross-country jobs." },
+                { title: "$150,000 Fuel & Permit Cash Flow Bridge", metric: "Continuous Operations", story: "A transit fleet bridged slow invoice cycles from corporate clients to keep drivers on the road with paid fuel and permits." },
+                { title: "$130,000 Dispatch Software Upgrade", metric: "+40% Route Efficiency", story: "A delivery courier service automated their dispatch and tracking systems, reducing fuel burn and delivery delays." },
+                { title: "$175,000 Trailer Acquisition", metric: "+70% Payload Volume", story: "A trucking sole proprietor acquired refrigerated trailers to transport perishable goods for grocery distributors." }
+            ],
+            "Healthcare": [
+                { title: "$200,000 Diagnostic Imaging Upgrade", metric: "+50% Patient Capacity", story: "A multi-specialty medical clinic acquired advanced ultrasound equipment to provide in-house testing and faster results." },
+                { title: "$120,000 Dental Chair Expansion", metric: "+35% Daily Patient Flow", story: "A family dentistry practice added two fully equipped operatories to accommodate growing patient waitlists." },
+                { title: "$95,000 Insurance Payout Cash Flow Bridge", metric: "Uninterrupted Payroll", story: "A physical therapy clinic maintained full staff salaries while waiting on delayed insurance reimbursement payouts." },
+                { title: "$160,000 Electronic Health Record System", metric: "99% Administrative Accuracy", story: "A wellness center migrated to a streamlined digital billing and patient record management suite." },
+                { title: "$240,000 Specialized Lab Equipment", metric: "+90% Test Turnaround Speed", story: "An independent diagnostic lab purchased high-throughput testing machinery to serve regional physician groups." }
+            ],
+            "Auto Repair": [
+                { title: "$110,000 Alignment & Lift Installation", metric: "+65% Bay Turnover", story: "An auto body and mechanic shop installed two heavy-duty vehicle lifts and state-of-the-art laser alignment equipment." },
+                { title: "$70,000 Advanced Diagnostic Scanners", metric: "+40% Diagnostic Speed", story: "A transmission specialty shop invested in factory-grade diagnostic computers for modern EV and hybrid vehicles." },
+                { title: "$130,000 Parts Inventory Stockpile", metric: "+50% Same-Day Repairs", story: "A collision repair center purchased high-turnover OEM parts in bulk to eliminate customer wait times." },
+                { title: "$85,000 Spray Booth Renovation", metric: "+30% Paint Job Capacity", story: "An auto body shop upgraded their ventilation and thermal paint curing booth to meet strict environmental standards." },
+                { title: "$150,000 Second Service Center Launch", metric: "Doubled Monthly Revenue", story: "A trusted local mechanic expanded into a second county location, capturing a completely new customer base." }
+            ],
+            "E-Commerce": [
+                { title: "$190,000 Digital Ad Campaign Scale", metric: "+320% Online Revenue", story: "A DTC fitness brand deployed working capital into targeted social media ads, resulting in record-breaking conversion spikes." },
+                { title: "$140,000 3PL Fulfillment Integration", metric: "Same-Day Shipping", story: "An online skincare merchant outsourced fulfillment to a third-party logistics warehouse to handle surging order volumes." },
+                { title: "$210,000 Holiday Inventory Stockpile", metric: "+250% Q4 Sell-Through", story: "A specialized electronics retailer secured bulk manufacturing units before global supply chain bottlenecks hit." },
+                { title: "$80,000 Website UX & Speed Overhaul", metric: "-45% Cart Abandonment", story: "An apparel e-commerce store upgraded their server infrastructure and mobile checkout flow for higher conversions." },
+                { title: "$160,000 Multi-Channel Expansion", metric: "+180% Marketplace Sales", story: "A home goods brand expanded from their proprietary site onto major global online marketplaces with dedicated inventory." }
+            ],
+            "Construction": [
+                { title: "$300,000 Heavy Excavator Acquisition", metric: "Secured $1.2M Municipal Contract", story: "A general contracting firm acquired a heavy excavator outright to qualify for large-scale municipal infrastructure bids." },
+                { title: "$180,000 Material Cost Cash Flow Buffer", metric: "On-Time Project Delivery", story: "A custom home builder purchased lumber and concrete in advance before market price hikes impacted profit margins." },
+                { title: "$125,000 Subcontractor Payroll Bridge", metric: "Zero Labor Delays", story: "A commercial framing contractor maintained steady worker output while waiting on milestone owner disbursements." },
+                { title: "$220,000 Roofing Equipment & Scaffold Fleet", metric: "+75% Concurrent Job Sites", story: "A roofing contractor outfitted three separate crews with new safety scaffolding and pneumatic equipment." },
+                { title: "$150,000 Commercial Lease & Office Setup", metric: "Established Permanent HQ", story: "A growing civil engineering contractor transitioned from a home office to a professional corporate suite." }
             ],
             "Other": [
-                { title: "$240,000 Equipment Acquisition", metric: "+180% Production Output", story: "A manufacturing startup secured 100% equipment financing to purchase CNC milling machines, cutting job production times in half." }
+                { title: "$240,000 Equipment Acquisition", metric: "+180% Production Output", story: "A manufacturing startup secured 100% equipment financing to purchase CNC milling machines, cutting job production times in half." },
+                { title: "$110,000 Working Capital Injection", metric: "Stabilized Cash Flow", story: "A regional service provider bridged seasonal slowdowns with flexible working capital deployment." },
+                { title: "$175,000 Expansion Initiative", metric: "+90% Growth Metric", story: "An emerging enterprise unlocked growth capital to scale operations rapidly into new regional markets." },
+                { title: "$95,000 Operational Upgrade", metric: "+50% Efficiency Gain", story: "A specialized business streamlined internal operations with modern enterprise software and equipment upgrades." },
+                { title: "$200,000 Strategic Reserve Fund", metric: "Complete Financial Peace of Mind", story: "A seasoned business owner secured a revolving capital reserve to capitalize on unexpected asset acquisition opportunities." }
             ]
         };
 
