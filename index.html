@@ -22,37 +22,37 @@
                         navy: {
                             dark: '#0B0F17',
                             card: '#111827',
-                            border: '#1F2937'
+                            border: '#334155'
                         },
                         cyan: {
                             electric: '#00F0FF',
-                            glow: 'rgba(0, 240, 255, 0.15)'
+                            glow: 'rgba(0, 240, 255, 0.2)'
                         }
                     },
                     boxShadow: {
-                        'glow': '0 0 25px rgba(0, 240, 255, 0.25)',
-                        'glow-lg': '0 0 40px rgba(0, 240, 255, 0.4)'
+                        'glow': '0 0 25px rgba(0, 240, 255, 0.3)',
+                        'glow-lg': '0 0 40px rgba(0, 240, 255, 0.5)'
                     }
                 }
             }
         }
     </script>
     <style>
-        .glow-border { border: 1px solid rgba(0, 240, 255, 0.2); }
-        .glow-border:hover { border-color: #00F0FF; box-shadow: 0 0 20px rgba(0, 240, 255, 0.2); }
+        .glow-border { border: 1px solid rgba(0, 240, 255, 0.4); }
+        .glow-border:hover { border-color: #00F0FF; box-shadow: 0 0 20px rgba(0, 240, 255, 0.3); }
         .wet-signature-font { font-family: 'Caveat', cursive; }
     </style>
 </head>
-<body class="bg-navy-dark text-gray-100 font-sans antialiased selection:bg-cyan-electric selection:text-navy-dark">
+<body class="bg-navy-dark text-white font-sans antialiased selection:bg-cyan-electric selection:text-navy-dark">
 
     <!-- Navigation Header -->
-    <header class="sticky top-0 z-50 bg-navy-dark/90 backdrop-blur-md border-b border-navy-border">
+    <header class="sticky top-0 z-50 bg-navy-dark/95 backdrop-blur-md border-b border-navy-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center space-x-2">
                 <span class="text-2xl font-black tracking-widest text-white italic">F1<span class="text-cyan-electric">CASH</span></span>
-                <span class="hidden md:inline-block text-xs uppercase tracking-wider text-gray-400 border-l border-gray-700 pl-2">Capital Advisory</span>
+                <span class="hidden md:inline-block text-xs uppercase tracking-wider text-slate-200 border-l border-slate-700 pl-2">Capital Advisory</span>
             </a>
-            <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
+            <nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-200">
                 <a href="#products" class="hover:text-cyan-electric transition-colors">Products</a>
                 <a href="#how-it-works" class="hover:text-cyan-electric transition-colors">How It Works</a>
                 <a href="#apply" class="hover:text-cyan-electric transition-colors">Apply</a>
@@ -67,16 +67,16 @@
     <!-- Hero Section -->
     <section class="relative py-20 lg:py-28 overflow-hidden border-b border-navy-border text-center">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="inline-flex items-center space-x-2 bg-navy-card border border-navy-border px-4 py-2 rounded-full mb-8 text-xs text-gray-300">
-                <span class="text-cyan-electric font-semibold">⚡ 4-Hour Approvals</span>
-                <span class="text-gray-600">|</span>
-                <span class="text-cyan-electric font-semibold">🚀 24-Hour Funding</span>
+            <div class="inline-flex items-center space-x-2 bg-navy-card border border-navy-border px-4 py-2 rounded-full mb-8 text-xs text-white">
+                <span class="text-cyan-electric font-bold">⚡ 4-Hour Approvals</span>
+                <span class="text-slate-500">|</span>
+                <span class="text-cyan-electric font-bold">🚀 24-Hour Funding</span>
             </div>
             <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-none mb-6">
                 Fast Commercial Capital to <br class="hidden sm:inline" />
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-electric to-blue-500">Accelerate Your Growth</span>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-electric to-blue-400">Accelerate Your Growth</span>
             </h1>
-            <p class="max-w-3xl mx-auto text-lg text-gray-400 mb-10">Secure up to $250,000+ in working capital with zero equity dilution.</p>
+            <p class="max-w-3xl mx-auto text-lg text-slate-200 mb-10">Secure up to $250,000+ in working capital with zero equity dilution.</p>
             <a href="#apply" class="bg-cyan-electric text-navy-dark font-extrabold text-base px-8 py-4 rounded-sm shadow-glow hover:shadow-glow-lg transition-all uppercase tracking-wider">APPLY FOR FUNDING</a>
         </div>
     </section>
@@ -87,33 +87,33 @@
             <div class="bg-navy-card border border-navy-border p-8 sm:p-12 rounded-sm shadow-2xl relative">
                 <div class="text-center mb-10">
                     <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-2">Commercial Funding Application</h2>
-                    <p class="text-sm text-gray-400">Complete all required fields below for immediate underwriting review.</p>
+                    <p class="text-sm text-slate-200">Complete all required fields below for immediate underwriting review.</p>
                 </div>
 
                 <form id="leadForm" class="space-y-6">
                     
                     <!-- 1. Business Profile -->
                     <div class="border-b border-navy-border pb-6">
-                        <h3 class="text-sm font-bold text-cyan-electric uppercase tracking-wider mb-4">1. Business Information</h3>
+                        <h3 class="text-sm font-extrabold text-cyan-electric uppercase tracking-wider mb-4">1. Business Information</h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Legal / Corporate Name</label>
-                                <input type="text" name="business_name" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric" placeholder="Salone LLC">
+                                <label class="block text-xs font-bold text-white uppercase mb-2">Legal / Corporate Name</label>
+                                <input type="text" name="business_name" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="Salone LLC">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">DBA Name</label>
-                                <input type="text" name="dba" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric" placeholder="Salone LLC">
+                                <label class="block text-xs font-bold text-white uppercase mb-2">DBA Name</label>
+                                <input type="text" name="dba" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="Salone LLC">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-4">
                             <div>
-                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Federal Tax ID (EIN)</label>
-                                <input type="text" name="ein" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric" placeholder="XX-XXXXXXX">
+                                <label class="block text-xs font-bold text-white uppercase mb-2">Federal Tax ID (EIN)</label>
+                                <input type="text" name="ein" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="XX-XXXXXXX">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Entity Type</label>
-                                <select name="entity_type" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric">
+                                <label class="block text-xs font-bold text-white uppercase mb-2">Entity Type</label>
+                                <select name="entity_type" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
                                     <option value="LLC">LLC</option>
                                     <option value="Corporation">Corporation</option>
                                     <option value="Sole Proprietorship">Sole Proprietorship</option>
@@ -121,8 +121,8 @@
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Category</label>
-                                <select name="business_category" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric">
+                                <label class="block text-xs font-bold text-white uppercase mb-2">Category</label>
+                                <select name="business_category" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
                                     <option value="Service">Service</option>
                                     <option value="Retail">Retail</option>
                                     <option value="Wholesale">Wholesale</option>
@@ -134,120 +134,120 @@
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
                             <div>
-                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Physical Street Address</label>
-                                <input type="text" name="business_address" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric" placeholder="1226 S 3rd Street 150">
+                                <label class="block text-xs font-bold text-white uppercase mb-2">Physical Street Address</label>
+                                <input type="text" name="business_address" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="1226 S 3rd Street 150">
                             </div>
                             <div class="grid grid-cols-3 gap-2">
-                                <input type="text" name="business_city" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm" placeholder="City">
-                                <input type="text" name="business_state" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm" placeholder="State">
-                                <input type="text" name="business_zip" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm" placeholder="Zip">
+                                <input type="text" name="business_city" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="City">
+                                <input type="text" name="business_state" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="State">
+                                <input type="text" name="business_zip" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="Zip">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
                             <div>
-                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Business Start Date</label>
-                                <input type="date" name="start_date" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric">
+                                <label class="block text-xs font-bold text-white uppercase mb-2">Business Start Date</label>
+                                <input type="date" name="start_date" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Amount Requested ($)</label>
-                                <input type="text" name="requested_amount" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric" placeholder="$50,000">
+                                <label class="block text-xs font-bold text-white uppercase mb-2">Amount Requested ($)</label>
+                                <input type="text" name="requested_amount" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="$50,000">
                             </div>
                         </div>
                     </div>
 
-                    <!-- 2. Owner Information -->
+                    <!-- 2. Principal / Owner Information -->
                     <div class="border-b border-navy-border pb-6">
-                        <h3 class="text-sm font-bold text-cyan-electric uppercase tracking-wider mb-4">2. Principal / Owner Information</h3>
+                        <h3 class="text-sm font-extrabold text-cyan-electric uppercase tracking-wider mb-4">2. Principal / Owner Information</h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">First Name</label>
-                                <input type="text" name="first_name" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric" placeholder="Austin">
+                                <label class="block text-xs font-bold text-white uppercase mb-2">First Name</label>
+                                <input type="text" name="first_name" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="Austin">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Last Name</label>
-                                <input type="text" name="last_name" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric" placeholder="Forbord">
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Work Email</label>
-                                <input type="email" name="email" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric" placeholder="austin@domain.com">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Cell Phone (10 Digits)</label>
-                                <input type="tel" name="phone" required pattern="[0-9]{10}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric" placeholder="5551234567">
+                                <label class="block text-xs font-bold text-white uppercase mb-2">Last Name</label>
+                                <input type="text" name="last_name" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="Forbord">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
                             <div>
-                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Social Security Number (SSN)</label>
-                                <input type="text" name="ssn" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric" placeholder="XXX-XX-XXXX">
+                                <label class="block text-xs font-bold text-white uppercase mb-2">Work Email</label>
+                                <input type="email" name="email" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="austin@domain.com">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Date of Birth</label>
-                                <input type="date" name="dob" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric">
+                                <label class="block text-xs font-bold text-white uppercase mb-2">Cell Phone (10 Digits)</label>
+                                <input type="tel" name="phone" required pattern="[0-9]{10}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="5551234567">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
                             <div>
-                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Home Address</label>
-                                <input type="text" name="home_address" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric" placeholder="6191 S Buffalo Dr">
+                                <label class="block text-xs font-bold text-white uppercase mb-2">Social Security Number (SSN)</label>
+                                <input type="text" name="ssn" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="XXX-XX-XXXX">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-white uppercase mb-2">Date of Birth</label>
+                                <input type="date" name="dob" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
+                            <div>
+                                <label class="block text-xs font-bold text-white uppercase mb-2">Home Address</label>
+                                <input type="text" name="home_address" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="6191 S Buffalo Dr">
                             </div>
                             <div class="grid grid-cols-3 gap-2">
-                                <input type="text" name="home_city" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm" placeholder="City">
-                                <input type="text" name="home_state" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm" placeholder="State">
-                                <input type="text" name="home_zip" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm" placeholder="Zip">
+                                <input type="text" name="home_city" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="City">
+                                <input type="text" name="home_state" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="State">
+                                <input type="text" name="home_zip" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="Zip">
                             </div>
                         </div>
                     </div>
 
-                    <!-- 3. Property & Debt -->
+                    <!-- 3. Property Information -->
                     <div class="border-b border-navy-border pb-6">
-                        <h3 class="text-sm font-bold text-cyan-electric uppercase tracking-wider mb-4">3. Property & Debt Information</h3>
+                        <h3 class="text-sm font-extrabold text-cyan-electric uppercase tracking-wider mb-4">3. Property & Debt Information</h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Landlord / Mortgage Name</label>
-                                <input type="text" name="landlord_name" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric" placeholder="Property Mgmt Inc">
+                                <label class="block text-xs font-bold text-white uppercase mb-2">Landlord / Mortgage Name</label>
+                                <input type="text" name="landlord_name" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="Property Mgmt Inc">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Landlord Phone</label>
-                                <input type="text" name="landlord_phone" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric" placeholder="555-000-1111">
+                                <label class="block text-xs font-bold text-white uppercase mb-2">Landlord Phone</label>
+                                <input type="text" name="landlord_phone" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="555-000-1111">
                             </div>
                         </div>
                     </div>
 
                     <!-- 4. File Upload -->
                     <div class="border-b border-navy-border pb-6">
-                        <h3 class="text-sm font-bold text-cyan-electric uppercase tracking-wider mb-2">4. Bank Statement Upload</h3>
-                        <p class="text-xs text-gray-400 mb-4">Attach 4–12 months of business bank statements (PDF format).</p>
-                        <div class="bg-navy-dark border-2 border-dashed border-navy-border hover:border-cyan-electric p-6 text-center rounded-sm cursor-pointer">
+                        <h3 class="text-sm font-extrabold text-cyan-electric uppercase tracking-wider mb-2">4. Bank Statement Upload</h3>
+                        <p class="text-xs text-slate-200 mb-4">Attach 4–12 months of business bank statements (PDF format).</p>
+                        <div class="bg-navy-dark border-2 border-dashed border-cyan-electric/50 hover:border-cyan-electric p-6 text-center rounded-sm cursor-pointer transition-all">
                             <label for="bank_statements" class="cursor-pointer block">
-                                <span class="text-2xl block mb-2">📄</span>
-                                <span class="text-xs font-bold text-white uppercase block mb-1">Select Statement PDFs</span>
+                                <span class="text-3xl block mb-2">📄</span>
+                                <span class="text-xs font-extrabold text-white uppercase block mb-1">Select Statement PDFs</span>
                                 <input id="bank_statements" type="file" multiple accept="application/pdf" class="hidden">
                             </label>
-                            <div id="file_list" class="mt-3 text-xs text-cyan-electric font-semibold space-y-1"></div>
+                            <div id="file_list" class="mt-3 text-xs text-cyan-electric font-bold space-y-1"></div>
                         </div>
                     </div>
 
                     <!-- 5. Digital Signature -->
                     <div class="space-y-4 pt-2">
-                        <h3 class="text-sm font-bold text-cyan-electric uppercase tracking-wider">5. Digital Certification & Wet Signature</h3>
+                        <h3 class="text-sm font-extrabold text-cyan-electric uppercase tracking-wider">5. Digital Certification & Wet Signature</h3>
                         <div>
-                            <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Full Signature Name</label>
-                            <input type="text" id="signature_input" name="signature_name" required oninput="document.getElementById('sig_preview').textContent = this.value || 'Signature Preview';" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric" placeholder="Austin Forbord">
-                            <div class="mt-2 p-3 bg-navy-dark border border-navy-border rounded-sm">
-                                <span class="text-[10px] text-gray-500 uppercase block mb-1">Wet Signature Preview:</span>
-                                <span id="sig_preview" class="wet-signature-font text-2xl text-cyan-electric block">Austin Forbord</span>
+                            <label class="block text-xs font-bold text-white uppercase mb-2">Full Signature Name</label>
+                            <input type="text" id="signature_input" name="signature_name" required oninput="document.getElementById('sig_preview').textContent = this.value || 'Austin Forbord';" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="Austin Forbord">
+                            <div class="mt-2 p-3 bg-navy-dark border border-cyan-electric/40 rounded-sm">
+                                <span class="text-[10px] text-slate-300 font-bold uppercase block mb-1">Wet Signature Preview:</span>
+                                <span id="sig_preview" class="wet-signature-font text-3xl text-cyan-electric block">Austin Forbord</span>
                             </div>
                         </div>
 
-                        <label class="flex items-start space-x-3 text-xs text-cyan-electric font-semibold cursor-pointer bg-navy-dark p-3 rounded-sm border border-navy-border">
-                            <input type="checkbox" name="digital_signature_consent" value="accepted" required class="mt-1 h-4 w-4 bg-navy-dark border-navy-border rounded text-cyan-electric">
+                        <label class="flex items-start space-x-3 text-xs text-cyan-electric font-bold cursor-pointer bg-navy-dark p-3 rounded-sm border border-navy-border">
+                            <input type="checkbox" name="digital_signature_consent" value="accepted" required class="mt-1 h-4 w-4 bg-navy-dark border-slate-600 rounded text-cyan-electric focus:ring-0">
                             <span>MANDATORY DIGITAL SIGNATURE: I certify all submitted underwriting details are accurate and authorize F1 Cash to execute commercial credit reports.</span>
                         </label>
                     </div>
@@ -257,19 +257,19 @@
                     </button>
                 </form>
                 
-                <div id="resultMessage" class="hidden mt-4 text-center text-sm font-semibold"></div>
+                <div id="resultMessage" class="hidden mt-4 text-center text-sm font-bold"></div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contact" class="bg-navy-dark border-t border-navy-border py-12 text-xs text-gray-400">
+    <footer id="contact" class="bg-navy-dark border-t border-navy-border py-12 text-xs text-slate-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
             <div>
                 <span class="text-xl font-black text-white italic tracking-widest">F1<span class="text-cyan-electric">CASH</span></span>
-                <p class="mt-1 text-gray-400">Commercial Capital Advisory & Brokerage Services.</p>
+                <p class="mt-1 text-slate-300">Commercial Capital Advisory & Brokerage Services.</p>
             </div>
-            <div class="text-gray-500 text-[11px]">&copy; 2026 F1 Cash. All rights reserved.</div>
+            <div class="text-slate-400 text-[11px]">&copy; 2026 F1 Cash. All rights reserved.</div>
         </div>
     </footer>
 
@@ -332,14 +332,18 @@
                     body: JSON.stringify(object)
                 });
 
+                // Thank You Screen
                 container.innerHTML = `
                     <div class="bg-navy-card border-2 border-cyan-electric p-10 rounded-sm shadow-glow text-center space-y-6 max-w-xl mx-auto">
                         <div class="text-5xl">⚡</div>
-                        <h2 class="text-2xl font-extrabold text-white">Thank You For Submitting Your Application</h2>
-                        <p class="text-sm text-gray-300">An F1 Cash funding agent will reach out shortly to discuss your terms.</p>
+                        <h2 class="text-2xl font-extrabold text-white">Thank you for submitting your application</h2>
+                        <p class="text-sm text-slate-200">An agent will reach out to you shortly.</p>
                         <div class="bg-navy-dark border border-navy-border p-6 rounded-sm space-y-2">
-                            <p class="text-xs font-bold uppercase text-cyan-electric">Submission Complete</p>
-                            <p class="text-xs text-gray-400">Attempting window close in <span id="countdown" class="text-white font-extrabold">5</span> seconds...</p>
+                            <p class="text-xs font-extrabold uppercase text-cyan-electric">Processing Complete</p>
+                            <p class="text-xs text-slate-300">Closing window in <span id="countdown" class="text-white font-extrabold text-base">5</span> seconds...</p>
+                            <p class="text-[11px] text-slate-400 pt-2 border-t border-navy-border">
+                                You can now safely close or navigate away from this website.
+                            </p>
                         </div>
                     </div>
                 `;
