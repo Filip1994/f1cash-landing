@@ -92,6 +92,9 @@
 
                 <form id="leadForm" class="space-y-6">
                     
+                    <!-- Invisible Spam Honeypot Field -->
+                    <input type="text" name="website_url" class="hidden" tabindex="-1" autocomplete="off">
+
                     <!-- 1. Business Profile -->
                     <div class="border-b border-navy-border pb-6">
                         <h3 class="text-sm font-extrabold text-cyan-electric uppercase tracking-wider mb-4">1. Business Information</h3>
@@ -140,7 +143,7 @@
                             <div class="grid grid-cols-3 gap-2">
                                 <input type="text" name="business_city" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="City">
                                 <input type="text" name="business_state" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="State">
-                                <input type="text" name="business_zip" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="Zip">
+                                <input type="text" name="business_zip" required maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="Zip">
                             </div>
                         </div>
 
@@ -151,7 +154,7 @@
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Amount Requested ($)</label>
-                                <input type="text" name="requested_amount" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="$50,000">
+                                <input type="text" name="requested_amount" required oninput="this.value = this.value.replace(/[^0-9$,.]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="$50,000">
                             </div>
                         </div>
                     </div>
@@ -177,14 +180,14 @@
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Cell Phone (10 Digits)</label>
-                                <input type="tel" name="phone" required pattern="[0-9]{10}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="5551234567">
+                                <input type="tel" name="phone" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="5551234567">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
                             <div>
-                                <label class="block text-xs font-bold text-white uppercase mb-2">Social Security Number (SSN)</label>
-                                <input type="text" name="ssn" required maxlength="11" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="XXX-XX-XXXX">
+                                <label class="block text-xs font-bold text-white uppercase mb-2">Social Security Number (9 Digits)</label>
+                                <input type="text" name="ssn" required maxlength="9" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="999999999">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Date of Birth</label>
@@ -200,7 +203,7 @@
                             <div class="grid grid-cols-3 gap-2">
                                 <input type="text" name="home_city" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="City">
                                 <input type="text" name="home_state" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="State">
-                                <input type="text" name="home_zip" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="Zip">
+                                <input type="text" name="home_zip" required maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="Zip">
                             </div>
                         </div>
                     </div>
@@ -215,7 +218,7 @@
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Landlord Phone</label>
-                                <input type="text" name="landlord_phone" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="555-000-1111">
+                                <input type="text" name="landlord_phone" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="5550001111">
                             </div>
                         </div>
                     </div>
@@ -223,7 +226,7 @@
                     <!-- 4. File Upload -->
                     <div class="border-b border-navy-border pb-6">
                         <h3 class="text-sm font-extrabold text-cyan-electric uppercase tracking-wider mb-2">4. Bank Statement Upload</h3>
-                        <p class="text-xs text-slate-200 mb-4">Attach 4–12 months of business bank statements (PDF format).</p>
+                        <p class="text-xs text-slate-200 mb-4">Attach 4–12 months of business bank statements (PDF format only, max 25 MB total).</p>
                         <div class="bg-navy-dark border-2 border-dashed border-cyan-electric/50 hover:border-cyan-electric p-6 text-center rounded-sm cursor-pointer transition-all">
                             <label for="bank_statements" class="cursor-pointer block">
                                 <span class="text-3xl block mb-2">📄</span>
@@ -273,19 +276,41 @@
         </div>
     </footer>
 
-    <!-- File Display & Form Submit Scripts -->
+    <!-- File Display, Size Check & Form Submit Scripts -->
     <script>
         const fileInput = document.getElementById('bank_statements');
         const fileListDisplay = document.getElementById('file_list');
+        const MAX_TOTAL_BYTES = 25 * 1024 * 1024; // 25 MB Limit
 
         fileInput.addEventListener('change', () => {
             fileListDisplay.innerHTML = '';
+            let totalBytes = 0;
+            let validFiles = true;
+
             if (fileInput.files.length > 0) {
                 Array.from(fileInput.files).forEach(file => {
+                    if (file.type !== 'application/pdf') {
+                        alert(`File "${file.name}" is not a PDF. Please select PDF files only.`);
+                        validFiles = false;
+                        return;
+                    }
+                    totalBytes += file.size;
                     const item = document.createElement('div');
                     item.textContent = `✓ Attached: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
                     fileListDisplay.appendChild(item);
                 });
+
+                if (!validFiles) {
+                    fileInput.value = '';
+                    fileListDisplay.innerHTML = '';
+                    return;
+                }
+
+                if (totalBytes > MAX_TOTAL_BYTES) {
+                    alert(`Total upload size exceeds 25 MB limit (${(totalBytes / 1024 / 1024).toFixed(2)} MB). Please select fewer or smaller files.`);
+                    fileInput.value = '';
+                    fileListDisplay.innerHTML = '';
+                }
             }
         });
 
@@ -309,6 +334,13 @@
 
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
+
+            // Honeypot check
+            const honeypot = form.querySelector('input[name="website_url"]');
+            if (honeypot && honeypot.value.trim() !== '') {
+                return;
+            }
+
             submitBtn.disabled = true;
             submitBtn.innerText = 'PACKAGING & UPLOADING...';
 
