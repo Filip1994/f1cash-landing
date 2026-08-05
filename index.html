@@ -48,36 +48,42 @@
             background-attachment: fixed;
         }
 
-        /* ELECTRIC SPARK FOCUS ANIMATION */
-        @keyframes fieldSpark {
-            0% { border-color: #3A506B; box-shadow: 0 0 0px rgba(0, 240, 255, 0); }
-            50% { border-color: #00F0FF; box-shadow: 0 0 15px rgba(0, 240, 255, 0.4), inset 0 0 5px rgba(0, 240, 255, 0.2); }
-            100% { border-color: #00F0FF; box-shadow: 0 0 10px rgba(0, 240, 255, 0.3); }
-        }
-
-        /* CONTAINER PULSE ANIMATION */
-        @keyframes containerPulse {
-            0% { transform: scale(1); box-shadow: 0 0 30px rgba(0, 240, 255, 0.2); }
-            50% { transform: scale(1.01); box-shadow: 0 0 50px rgba(0, 240, 255, 0.4); }
-            100% { transform: scale(1); box-shadow: 0 0 30px rgba(0, 240, 255, 0.2); }
-        }
-
-        .pulse-once {
-            animation: containerPulse 0.8s ease-in-out;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            animation: fieldSpark 0.4s forwards;
-            outline: none;
-        }
-
-        .wet-signature-font { font-family: 'Caveat', cursive; }
-
+        /* FIX WHITE-ON-WHITE TEXT & AUTOFILL BUG */
         input, select, textarea {
+            background-color: #131B31 !important;
             color: #FFFFFF !important;
             -webkit-text-fill-color: #FFFFFF !important;
             font-weight: 600 !important;
         }
+
+        input:focus, select:focus, textarea:focus {
+            background-color: #131B31 !important;
+            color: #FFFFFF !important;
+            -webkit-text-fill-color: #FFFFFF !important;
+            border-color: #00F0FF !important;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+            outline: none;
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus {
+            -webkit-text-fill-color: #FFFFFF !important;
+            -webkit-box-shadow: 0 0 0px 1000px #131B31 inset !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        /* MODAL POPUP ANIMATION */
+        @keyframes modalPop {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-animate {
+            animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .wet-signature-font { font-family: 'Caveat', cursive; }
 
         input[type="date"]::-webkit-calendar-picker-indicator {
             filter: invert(1);
@@ -103,7 +109,7 @@
 <body class="text-white font-sans antialiased selection:bg-cyan-electric selection:text-slate-darkest">
 
     <!-- Navigation Header -->
-    <header class="sticky top-0 z-50 bg-slate-darkest/90 backdrop-blur-md border-b border-slate-border">
+    <header class="sticky top-0 z-40 bg-slate-darkest/90 backdrop-blur-md border-b border-slate-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center space-x-2">
                 <span class="text-2xl font-black tracking-widest text-white italic">F1<span class="text-cyan-electric">CASH</span></span>
@@ -112,11 +118,10 @@
             <nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
                 <a href="#products" class="hover:text-cyan-electric transition-colors">Products</a>
                 <a href="#how-it-works" class="hover:text-cyan-electric transition-colors">How It Works</a>
-                <a href="#apply" class="hover:text-cyan-electric transition-colors">Apply</a>
                 <a href="#contact" class="hover:text-cyan-electric transition-colors">Contact</a>
             </nav>
             <div>
-                <a href="#apply" onclick="triggerHeroApply()" class="bg-cyan-electric text-slate-darkest font-extrabold px-6 py-2.5 rounded-sm hover:shadow-glow transition-all text-sm uppercase tracking-wider">APPLY NOW</a>
+                <button onclick="openModal()" class="bg-cyan-electric text-slate-darkest font-extrabold px-6 py-2.5 rounded-sm hover:shadow-glow transition-all text-sm uppercase tracking-wider cursor-pointer">APPLY NOW</button>
             </div>
         </div>
     </header>
@@ -134,7 +139,7 @@
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-electric via-cyan-200 to-blue-400">Accelerate Your Growth</span>
             </h1>
             <p class="max-w-3xl mx-auto text-lg text-slate-300 mb-10">Secure up to $250,000+ in working capital with zero equity dilution.</p>
-            <a href="#apply" onclick="triggerHeroApply()" class="bg-cyan-electric text-slate-darkest font-extrabold text-base px-8 py-4 rounded-sm shadow-glow hover:shadow-glow-lg transition-all uppercase tracking-wider inline-block">APPLY FOR FUNDING</a>
+            <button onclick="openModal()" class="bg-cyan-electric text-slate-darkest font-extrabold text-base px-8 py-4 rounded-sm shadow-glow hover:shadow-glow-lg transition-all uppercase tracking-wider inline-block cursor-pointer">APPLY FOR FUNDING</button>
         </div>
     </section>
 
@@ -232,11 +237,14 @@
         </div>
     </section>
 
-    <!-- Interactive Application Form Container -->
-    <section id="apply" class="py-20">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" id="applicationContainer">
-            <div id="formCard" class="bg-slate-card/95 backdrop-blur-xl border-2 border-cyan-electric/50 p-6 sm:p-12 rounded-sm shadow-glow relative transition-all duration-300">
+    <!-- MODAL POPUP OVERLAY WRAPPER -->
+    <div id="applicationModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-darkest/80 backdrop-blur-md hidden">
+        <div class="max-w-4xl w-full max-h-[90vh] overflow-y-auto relative modal-animate" id="applicationContainer">
+            <div class="bg-slate-card border-2 border-cyan-electric p-6 sm:p-12 rounded-sm shadow-glow-lg relative">
                 
+                <!-- Close Button -->
+                <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-cyan-electric text-xl font-bold cursor-pointer">✕</button>
+
                 <!-- Header Title -->
                 <div class="text-center mb-8">
                     <h2 class="text-2xl sm:text-3xl font-black text-white tracking-wider uppercase mb-2">Commercial Funding Application</h2>
@@ -270,22 +278,22 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Legal / Corporate Name *</label>
-                                <input type="text" name="business_name" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric">
+                                <input type="text" name="business_name" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">DBA Name</label>
-                                <input type="text" name="dba" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric">
+                                <input type="text" name="dba" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Federal Tax ID (EIN) *</label>
-                                <input type="text" name="ein" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric">
+                                <input type="text" name="ein" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Entity Type *</label>
-                                <select name="entity_type" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric">
+                                <select name="entity_type" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                                     <option value="LLC">LLC</option>
                                     <option value="Corporation">Corporation</option>
                                     <option value="Sole Proprietorship">Sole Proprietorship</option>
@@ -294,7 +302,7 @@
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Category *</label>
-                                <select id="business_category" name="business_category" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric">
+                                <select id="business_category" name="business_category" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                                     <option value="Service">Service</option>
                                     <option value="Retail">Retail</option>
                                     <option value="Wholesale">Wholesale</option>
@@ -307,20 +315,20 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Physical Street Address *</label>
-                                <input type="text" name="business_address" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric">
+                                <input type="text" name="business_address" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                             </div>
                             <div class="grid grid-cols-3 gap-2">
                                 <div>
                                     <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">City *</label>
-                                    <input type="text" name="business_city" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-2 py-2.5 text-white text-xs focus:border-cyan-electric">
+                                    <input type="text" name="business_city" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-2 py-2.5 text-white text-xs">
                                 </div>
                                 <div>
                                     <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">State *</label>
-                                    <input type="text" name="business_state" required maxlength="2" placeholder="ST" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-2 py-2.5 text-white text-xs focus:border-cyan-electric uppercase">
+                                    <input type="text" name="business_state" required maxlength="2" placeholder="ST" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-2 py-2.5 text-white text-xs uppercase">
                                 </div>
                                 <div>
                                     <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Zip *</label>
-                                    <input type="text" name="business_zip" required maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="Zip" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-2 py-2.5 text-white text-xs focus:border-cyan-electric">
+                                    <input type="text" name="business_zip" required maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="Zip" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-2 py-2.5 text-white text-xs">
                                 </div>
                             </div>
                         </div>
@@ -328,11 +336,11 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Business Start Date *</label>
-                                <input type="date" name="start_date" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric">
+                                <input type="date" name="start_date" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Amount Requested ($) *</label>
-                                <input type="text" name="requested_amount" required oninput="this.value = this.value.replace(/[^0-9$,.]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric">
+                                <input type="text" name="requested_amount" required oninput="this.value = this.value.replace(/[^0-9$,.]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                             </div>
                         </div>
                     </div>
@@ -346,53 +354,53 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">First Name *</label>
-                                <input type="text" name="first_name" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric">
+                                <input type="text" name="first_name" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Last Name *</label>
-                                <input type="text" name="last_name" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric">
+                                <input type="text" name="last_name" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Work Email *</label>
-                                <input type="email" name="email" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric">
+                                <input type="email" name="email" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Cell Phone (10 Digits) *</label>
-                                <input type="tel" name="phone" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric">
+                                <input type="tel" name="phone" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Social Security Number (9 Digits) *</label>
-                                <input type="text" name="ssn" required maxlength="9" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric">
+                                <input type="text" name="ssn" required maxlength="9" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Date of Birth *</label>
-                                <input type="date" name="dob" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric">
+                                <input type="date" name="dob" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Home Address *</label>
-                                <input type="text" name="home_address" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric">
+                                <input type="text" name="home_address" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                             </div>
                             <div class="grid grid-cols-3 gap-2">
                                 <div>
                                     <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">City *</label>
-                                    <input type="text" name="home_city" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-2 py-2.5 text-white text-xs focus:border-cyan-electric">
+                                    <input type="text" name="home_city" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-2 py-2.5 text-white text-xs">
                                 </div>
                                 <div>
                                     <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">State *</label>
-                                    <input type="text" name="home_state" required maxlength="2" placeholder="ST" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-2 py-2.5 text-white text-xs focus:border-cyan-electric uppercase">
+                                    <input type="text" name="home_state" required maxlength="2" placeholder="ST" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-2 py-2.5 text-white text-xs uppercase">
                                 </div>
                                 <div>
                                     <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Zip *</label>
-                                    <input type="text" name="home_zip" required maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="Zip" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-2 py-2.5 text-white text-xs focus:border-cyan-electric">
+                                    <input type="text" name="home_zip" required maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="Zip" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-2 py-2.5 text-white text-xs">
                                 </div>
                             </div>
                         </div>
@@ -421,7 +429,7 @@
                         </div>
 
                         <div class="text-center">
-                            <button type="button" onclick="skipAndEmailAgent()" class="w-full sm:w-auto border border-cyan-electric text-cyan-electric font-extrabold px-6 py-3 rounded-sm hover:bg-cyan-electric hover:text-slate-darkest transition-all text-xs uppercase tracking-wider">
+                            <button type="button" onclick="skipAndEmailAgent()" class="w-full sm:w-auto border border-cyan-electric text-cyan-electric font-extrabold px-6 py-3 rounded-sm hover:bg-cyan-electric hover:text-slate-darkest transition-all text-xs uppercase tracking-wider cursor-pointer">
                                 ✉️ Skip Upload & Email Statements Directly to Agent
                             </button>
                         </div>
@@ -435,7 +443,7 @@
 
                         <div>
                             <label class="block text-xs font-bold text-white uppercase mb-2">Full Signature Name *</label>
-                            <input type="text" id="signature_input" name="signature_name" required oninput="document.getElementById('sig_preview').textContent = this.value || '';" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric">
+                            <input type="text" id="signature_input" name="signature_name" required oninput="document.getElementById('sig_preview').textContent = this.value || '';" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                             <div class="mt-3 p-4 bg-slate-darkest border border-cyan-electric/40 rounded-sm min-h-[60px]">
                                 <span class="text-[10px] text-slate-300 font-bold uppercase block mb-1">Wet Signature Preview:</span>
                                 <span id="sig_preview" class="wet-signature-font text-3xl text-cyan-electric block"></span>
@@ -450,21 +458,21 @@
 
                     <!-- Navigation Controls -->
                     <div class="flex justify-between items-center pt-6 border-t border-slate-border">
-                        <button type="button" id="prevBtn" onclick="changeStep(-1)" class="hidden border border-slate-600 text-white font-bold px-6 py-3 rounded-sm hover:border-cyan-electric transition-all text-xs uppercase">
+                        <button type="button" id="prevBtn" onclick="changeStep(-1)" class="hidden border border-slate-600 text-white font-bold px-6 py-3 rounded-sm hover:border-cyan-electric transition-all text-xs uppercase cursor-pointer">
                             ← Back
                         </button>
                         <div></div>
-                        <button type="button" id="nextBtn" onclick="changeStep(1)" class="bg-cyan-electric text-slate-darkest font-extrabold px-8 py-3 rounded-sm shadow-glow hover:shadow-glow-lg transition-all text-xs uppercase tracking-wider">
+                        <button type="button" id="nextBtn" onclick="changeStep(1)" class="bg-cyan-electric text-slate-darkest font-extrabold px-8 py-3 rounded-sm shadow-glow hover:shadow-glow-lg transition-all text-xs uppercase tracking-wider cursor-pointer">
                             Next Step ➔
                         </button>
-                        <button type="submit" id="submitBtn" class="hidden bg-cyan-electric text-slate-darkest font-extrabold px-8 py-3 rounded-sm shadow-glow hover:shadow-glow-lg transition-all text-xs uppercase tracking-widest">
+                        <button type="submit" id="submitBtn" class="hidden bg-cyan-electric text-slate-darkest font-extrabold px-8 py-3 rounded-sm shadow-glow hover:shadow-glow-lg transition-all text-xs uppercase tracking-widest cursor-pointer">
                             SUBMIT FUNDING APPLICATION
                         </button>
                     </div>
                 </form>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
     <footer id="contact" class="bg-slate-darkest border-t border-slate-border py-12 text-xs text-slate-300">
@@ -477,7 +485,7 @@
         </div>
     </footer>
 
-    <!-- Form & Success Story Script -->
+    <!-- Form & Modal Script -->
     <script>
         let currentStep = 1;
         const totalSteps = 4;
@@ -505,14 +513,14 @@
             return list[Math.floor(Math.random() * list.length)];
         }
 
-        function triggerHeroApply() {
+        function openModal() {
             currentStep = 1;
             updateStepUI();
-            const card = document.getElementById('formCard');
-            card.classList.remove('pulse-once');
-            void card.offsetWidth; // trigger reflow
-            card.classList.add('pulse-once');
-            document.getElementById('applicationContainer').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            document.getElementById('applicationModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('applicationModal').classList.add('hidden');
         }
 
         function updateStepUI() {
@@ -581,7 +589,7 @@
             if (currentStep > totalSteps) currentStep = totalSteps;
 
             updateStepUI();
-            document.getElementById('applicationContainer').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            document.getElementById('applicationContainer').scrollTop = 0;
         }
 
         function skipAndEmailAgent() {
@@ -685,6 +693,7 @@
                 });
 
                 container.innerHTML = `
+                    <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-cyan-electric text-xl font-bold cursor-pointer">✕</button>
                     <div class="bg-slate-card/95 border-2 border-cyan-electric p-8 sm:p-12 rounded-sm shadow-glow-lg text-center space-y-6 max-w-2xl mx-auto backdrop-blur-xl">
                         <div class="inline-block bg-cyan-electric/10 border border-cyan-electric px-4 py-1.5 rounded-full text-xs font-mono text-cyan-electric uppercase tracking-widest">
                             ⚡ Application Underwriting Initiated
