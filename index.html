@@ -49,14 +49,6 @@
             font-weight: 600 !important;
         }
 
-        /* HIGH-CONTRAST PLACEHOLDERS */
-        input::placeholder, textarea::placeholder {
-            color: #94A3B8 !important;
-            -webkit-text-fill-color: #94A3B8 !important;
-            opacity: 1 !important;
-            font-weight: 400 !important;
-        }
-
         /* INVERT NATIVE HTML DATE PICKER ICON TO BRIGHT WHITE */
         input[type="date"]::-webkit-calendar-picker-indicator {
             filter: invert(1);
@@ -222,18 +214,18 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Legal / Corporate Name</label>
-                                <input type="text" name="business_name" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="Salone LLC">
+                                <input type="text" name="business_name" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">DBA Name</label>
-                                <input type="text" name="dba" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="Salone LLC">
+                                <input type="text" name="dba" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-4">
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Federal Tax ID (EIN)</label>
-                                <input type="text" name="ein" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="XX-XXXXXXX">
+                                <input type="text" name="ein" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Entity Type</label>
@@ -259,12 +251,12 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Physical Street Address</label>
-                                <input type="text" name="business_address" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="1226 S 3rd Street 150">
+                                <input type="text" name="business_address" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
                             </div>
                             <div class="grid grid-cols-3 gap-2">
-                                <input type="text" name="business_city" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="City">
-                                <input type="text" name="business_state" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="State">
-                                <input type="text" name="business_zip" required maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="Zip">
+                                <input type="text" name="business_city" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
+                                <input type="text" name="business_state" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
+                                <input type="text" name="business_zip" required maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
                             </div>
                         </div>
 
@@ -275,7 +267,7 @@
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Amount Requested ($)</label>
-                                <input type="text" name="requested_amount" required oninput="this.value = this.value.replace(/[^0-9$,.]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="$50,000">
+                                <input type="text" name="requested_amount" required oninput="this.value = this.value.replace(/[^0-9$,.]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
                             </div>
                         </div>
                     </div>
@@ -286,29 +278,29 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">First Name</label>
-                                <input type="text" name="first_name" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="Austin">
+                                <input type="text" name="first_name" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Last Name</label>
-                                <input type="text" name="last_name" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="Forbord">
+                                <input type="text" name="last_name" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Work Email</label>
-                                <input type="email" name="email" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="austin@domain.com">
+                                <input type="email" name="email" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Cell Phone (10 Digits)</label>
-                                <input type="tel" name="phone" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="5551234567">
+                                <input type="tel" name="phone" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Social Security Number (9 Digits)</label>
-                                <input type="text" name="ssn" required maxlength="9" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="999999999">
+                                <input type="text" name="ssn" required maxlength="9" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Date of Birth</label>
@@ -319,12 +311,12 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Home Address</label>
-                                <input type="text" name="home_address" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="6191 S Buffalo Dr">
+                                <input type="text" name="home_address" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
                             </div>
                             <div class="grid grid-cols-3 gap-2">
-                                <input type="text" name="home_city" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="City">
-                                <input type="text" name="home_state" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="State">
-                                <input type="text" name="home_zip" required maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="Zip">
+                                <input type="text" name="home_city" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
+                                <input type="text" name="home_state" required class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
+                                <input type="text" name="home_zip" required maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="bg-navy-dark border border-navy-border rounded-sm px-2 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
                             </div>
                         </div>
                     </div>
@@ -335,11 +327,11 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Landlord / Mortgage Name</label>
-                                <input type="text" name="landlord_name" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="Property Mgmt Inc">
+                                <input type="text" name="landlord_name" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Landlord Phone</label>
-                                <input type="text" name="landlord_phone" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="5550001111">
+                                <input type="text" name="landlord_phone" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
                             </div>
                         </div>
                     </div>
@@ -363,10 +355,10 @@
                         <h3 class="text-sm font-extrabold text-cyan-electric uppercase tracking-wider">5. Digital Certification & Wet Signature</h3>
                         <div>
                             <label class="block text-xs font-bold text-white uppercase mb-2">Full Signature Name</label>
-                            <input type="text" id="signature_input" name="signature_name" required oninput="document.getElementById('sig_preview').textContent = this.value || 'Austin Forbord';" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none placeholder-slate-400" placeholder="Austin Forbord">
-                            <div class="mt-2 p-3 bg-navy-dark border border-cyan-electric/40 rounded-sm">
+                            <input type="text" id="signature_input" name="signature_name" required oninput="document.getElementById('sig_preview').textContent = this.value || '';" class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white text-sm focus:border-cyan-electric focus:outline-none">
+                            <div class="mt-2 p-3 bg-navy-dark border border-cyan-electric/40 rounded-sm min-h-[50px]">
                                 <span class="text-[10px] text-slate-300 font-bold uppercase block mb-1">Wet Signature Preview:</span>
-                                <span id="sig_preview" class="wet-signature-font text-3xl text-cyan-electric block">Austin Forbord</span>
+                                <span id="sig_preview" class="wet-signature-font text-3xl text-cyan-electric block"></span>
                             </div>
                         </div>
 
