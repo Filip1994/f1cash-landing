@@ -8,9 +8,6 @@
     <!-- TAILWIND CSS CDN SCRIPT -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- GOOGLE MAPS PLACES AUTOCOMPLETE API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places"></script>
-
     <!-- TAILWIND CUSTOM THEME CONFIGURATION -->
     <script>
         tailwind.config = {
@@ -42,21 +39,6 @@
         .glow-border:hover {
             border-color: #00F0FF;
             box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
-        }
-        .pac-container {
-            background-color: #111827 !important;
-            border: 1px solid #1F2937 !important;
-            font-family: sans-serif;
-        }
-        .pac-item {
-            color: #9CA3AF !important;
-            border-top: 1px solid #1F2937 !important;
-        }
-        .pac-item:hover {
-            background-color: #1F2937 !important;
-        }
-        .pac-item-query {
-            color: #00F0FF !important;
         }
     </style>
 </head>
@@ -279,7 +261,7 @@
                         <div class="grid grid-cols-1 gap-4">
                             <div>
                                 <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Home Street Address</label>
-                                <input id="home_address" type="text" name="home_address" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" placeholder="Start typing home street address...">
+                                <input id="home_address" type="text" name="home_address" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" placeholder="123 Main Street">
                             </div>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
@@ -323,7 +305,7 @@
                         <div class="grid grid-cols-1 gap-4 mt-4">
                             <div>
                                 <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Business Street Address</label>
-                                <input id="business_address" type="text" name="business_address" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" placeholder="Start typing business street address...">
+                                <input id="business_address" type="text" name="business_address" required class="w-full bg-navy-dark border border-navy-border rounded-sm px-4 py-3 text-white focus:outline-none focus:border-cyan-electric text-sm" placeholder="456 Corporate Blvd">
                             </div>
                         </div>
 
@@ -425,51 +407,7 @@
         </div>
     </footer>
 
-    <!-- Google Maps Places Autocomplete Script -->
-    <script>
-        function initAutocomplete() {
-            if (typeof google === 'undefined' || !google.maps || !google.maps.places) return;
-
-            const homeInput = document.getElementById('home_address');
-            const homeAutocomplete = new google.maps.places.Autocomplete(homeInput, { types: ['address'] });
-            homeAutocomplete.addListener('place_changed', () => {
-                const place = homeAutocomplete.getPlace();
-                fillAddressFields(place, 'home');
-            });
-
-            const businessInput = document.getElementById('business_address');
-            const businessAutocomplete = new google.maps.places.Autocomplete(businessInput, { types: ['address'] });
-            businessAutocomplete.addListener('place_changed', () => {
-                const place = businessAutocomplete.getPlace();
-                fillAddressFields(place, 'business');
-            });
-        }
-
-        function fillAddressFields(place, prefix) {
-            if (!place.address_components) return;
-
-            let city = '', state = '', zip = '';
-
-            for (const component of place.address_components) {
-                const componentType = component.types[0];
-                if (componentType === 'locality') {
-                    city = component.long_name;
-                } else if (componentType === 'administrative_area_level_1') {
-                    state = component.short_name;
-                } else if (componentType === 'postal_code') {
-                    zip = component.long_name;
-                }
-            }
-
-            if (city) document.getElementById(`${prefix}_city`).value = city;
-            if (state) document.getElementById(`${prefix}_state`).value = state;
-            if (zip) document.getElementById(`${prefix}_zip`).value = zip;
-        }
-
-        window.addEventListener('load', initAutocomplete);
-    </script>
-
-    <!-- File Upload Helper UI -->
+    <!-- File Upload Helper UI Script -->
     <script>
         const fileInput = document.getElementById('bank_statements');
         const fileListDisplay = document.getElementById('file_list');
@@ -517,7 +455,7 @@
             const formData = new FormData(form);
             const object = Object.fromEntries(formData);
 
-            // Convert files to Base64
+            // Convert attached files to Base64
             const filesInput = document.getElementById('bank_statements');
             let filePromises = [];
             if (filesInput.files.length > 0) {
