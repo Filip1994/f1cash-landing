@@ -1,731 +1,157 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='18' font-family='sans-serif' font-weight='900' font-size='16' fill='%2300F0FF'>F1</text></svg>">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>F1 CASH | Commercial Capital Advisory & Underwriting</title>
-    
-    <!-- TAILWIND CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- TAILWIND CUSTOM CONFIGURATION -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        slate: {
-                            darkest: '#0B132B',
-                            dark: '#1C2541',
-                            card: '#131B31',
-                            border: '#3A506B'
-                        },
-                        cyan: {
-                            electric: '#00F0FF',
-                            glow: 'rgba(0, 240, 255, 0.3)'
-                        }
-                    },
-                    boxShadow: {
-                        'glow': '0 0 25px rgba(0, 240, 255, 0.35)',
-                        'glow-lg': '0 0 50px rgba(0, 240, 255, 0.5)'
-                    }
-                }
-            }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F1 CASH | Commercial Capital Advisory</title>
+  <!-- Custom Branded Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='18' font-family='sans-serif' font-weight='900' font-size='16' fill='%2300F0FF'>F1</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'slate-darkest': '#0B132B',
+            'slate-dark': '#131B31',
+            'slate-border': '#3A506B',
+            'neon-cyan': '#00F0FF',
+          }
         }
-    </script>
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #0B132B;
-            background-image: 
-                radial-gradient(circle at 50% 0%, #1C2541 0%, #0B132B 75%),
-                linear-gradient(135deg, #0B132B 0%, #131B31 100%);
-            background-attachment: fixed;
-        }
-
-        /* FIX WHITE-ON-WHITE TEXT & AUTOFILL BUG */
-        input, select, textarea {
-            background-color: #131B31 !important;
-            color: #FFFFFF !important;
-            -webkit-text-fill-color: #FFFFFF !important;
-            font-weight: 600 !important;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            background-color: #131B31 !important;
-            color: #FFFFFF !important;
-            -webkit-text-fill-color: #FFFFFF !important;
-            border-color: #00F0FF !important;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
-            outline: none;
-        }
-
-        input:-webkit-autofill,
-        input:-webkit-autofill:hover,
-        input:-webkit-autofill:focus {
-            -webkit-text-fill-color: #FFFFFF !important;
-            -webkit-box-shadow: 0 0 0px 1000px #131B31 inset !important;
-            transition: background-color 5000s ease-in-out 0s;
-        }
-
-        /* MODAL POPUP ANIMATION */
-        @keyframes modalPop {
-            0% { transform: scale(0.9); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .modal-animate {
-            animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .wet-signature-font { font-family: 'Caveat', cursive; }
-
-        input[type="date"]::-webkit-calendar-picker-indicator {
-            filter: invert(1);
-            cursor: pointer;
-        }
-
-        select option {
-            background-color: #131B31 !important;
-            color: #FFFFFF !important;
-        }
-
-        .step-content {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-        .step-content.active {
-            display: block;
-            opacity: 1;
-        }
-    </style>
+      }
+    }
+  </script>
 </head>
-<body class="text-white font-sans antialiased selection:bg-cyan-electric selection:text-slate-darkest">
-
-    <!-- Navigation Header -->
-    <header class="sticky top-0 z-40 bg-slate-darkest/90 backdrop-blur-md border-b border-slate-border">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center space-x-2">
-                <span class="text-2xl font-black tracking-widest text-white italic">F1<span class="text-cyan-electric">CASH</span></span>
-                <span class="hidden md:inline-block text-xs uppercase tracking-wider text-slate-300 border-l border-slate-600 pl-2">Capital Advisory</span>
-            </a>
-            <nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
-                <a href="#products" class="hover:text-cyan-electric transition-colors">Products</a>
-                <a href="#how-it-works" class="hover:text-cyan-electric transition-colors">How It Works</a>
-                <a href="#contact" class="hover:text-cyan-electric transition-colors">Contact</a>
-            </nav>
-            <div>
-                <button onclick="openModal()" class="bg-cyan-electric text-slate-darkest font-extrabold px-6 py-2.5 rounded-sm hover:shadow-glow transition-all text-sm uppercase tracking-wider cursor-pointer">APPLY NOW</button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="relative py-20 lg:py-28 overflow-hidden border-b border-slate-border text-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="inline-flex items-center space-x-2 bg-slate-card/90 border border-cyan-electric/30 px-4 py-2 rounded-full mb-8 text-xs text-white backdrop-blur-sm shadow-sm">
-                <span class="text-cyan-electric font-bold">⚡ 4-Hour Approvals</span>
-                <span class="text-slate-500">|</span>
-                <span class="text-cyan-electric font-bold">🚀 Same-Day Funding Deployment</span>
-            </div>
-            <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-none mb-6">
-                Fast Commercial Capital to <br class="hidden sm:inline" />
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-electric via-cyan-200 to-blue-400">Accelerate Your Growth</span>
-            </h1>
-            <p class="max-w-3xl mx-auto text-lg text-slate-300 mb-10">Secure up to $250,000+ in working capital with zero equity dilution.</p>
-            <button onclick="openModal()" class="bg-cyan-electric text-slate-darkest font-extrabold text-base px-8 py-4 rounded-sm shadow-glow hover:shadow-glow-lg transition-all uppercase tracking-wider inline-block cursor-pointer">APPLY FOR FUNDING</button>
-        </div>
-    </section>
-
-    <!-- Portfolio Solutions Showcase Grid -->
-    <section id="products" class="py-20 border-b border-slate-border">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-xs uppercase tracking-widest text-cyan-electric font-bold mb-2">Portfolio Solutions</h2>
-                <p class="text-3xl font-extrabold text-white">Capital Engineered for Every Phase</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-slate-card/90 backdrop-blur-md p-6 rounded-sm border border-slate-border hover:border-cyan-electric transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="text-cyan-electric text-2xl font-black mb-3">01 / CAPITAL</div>
-                        <h3 class="text-xl font-bold text-white mb-2">Working Capital Loan</h3>
-                        <p class="text-sm text-slate-300 mb-6">Immediate liquidity injection designed to bridge cash flow gaps and cover operating costs.</p>
-                    </div>
-                    <div class="border-t border-slate-border pt-4 text-xs space-y-2 text-slate-300">
-                        <div class="flex justify-between"><span>Max Amount:</span><span class="text-white font-bold">$250,000+</span></div>
-                        <div class="flex justify-between"><span>Approval Time:</span><span class="text-white font-bold">4 Hours</span></div>
-                        <div class="flex justify-between"><span>Terms:</span><span class="text-white font-bold">3–18 Months</span></div>
-                    </div>
-                </div>
-
-                <div class="bg-slate-card/90 backdrop-blur-md p-6 rounded-sm border border-slate-border hover:border-cyan-electric transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="text-cyan-electric text-2xl font-black mb-3">02 / LOANS</div>
-                        <h3 class="text-xl font-bold text-white mb-2">Business Term Loans</h3>
-                        <p class="text-sm text-slate-300 mb-6">Predictable, structured monthly repayment terms tailored for expansion projects.</p>
-                    </div>
-                    <div class="border-t border-slate-border pt-4 text-xs space-y-2 text-slate-300">
-                        <div class="flex justify-between"><span>Max Amount:</span><span class="text-white font-bold">$500,000</span></div>
-                        <div class="flex justify-between"><span>Approval Time:</span><span class="text-white font-bold">24 Hours</span></div>
-                        <div class="flex justify-between"><span>Terms:</span><span class="text-white font-bold">1–5 Years</span></div>
-                    </div>
-                </div>
-
-                <div class="bg-slate-card/90 backdrop-blur-md p-6 rounded-sm border border-slate-border hover:border-cyan-electric transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="text-cyan-electric text-2xl font-black mb-3">03 / CREDIT</div>
-                        <h3 class="text-xl font-bold text-white mb-2">Lines of Credit</h3>
-                        <p class="text-sm text-slate-300 mb-6">Revolving capital reserve. Draw down what you need, pay interest only on what you use.</p>
-                    </div>
-                    <div class="border-t border-slate-border pt-4 text-xs space-y-2 text-slate-300">
-                        <div class="flex justify-between"><span>Max Amount:</span><span class="text-white font-bold">$200,000</span></div>
-                        <div class="flex justify-between"><span>Approval Time:</span><span class="text-white font-bold">Same Day</span></div>
-                        <div class="flex justify-between"><span>Terms:</span><span class="text-white font-bold">Revolving</span></div>
-                    </div>
-                </div>
-
-                <div class="bg-slate-card/90 backdrop-blur-md p-6 rounded-sm border border-slate-border hover:border-cyan-electric transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="text-cyan-electric text-2xl font-black mb-3">04 / ASSETS</div>
-                        <h3 class="text-xl font-bold text-white mb-2">Equipment Financing</h3>
-                        <p class="text-sm text-slate-300 mb-6">Capital dedicated to acquiring heavy machinery, vehicle fleets, or technology.</p>
-                    </div>
-                    <div class="border-t border-slate-border pt-4 text-xs space-y-2 text-slate-300">
-                        <div class="flex justify-between"><span>Max Amount:</span><span class="text-white font-bold">100% Value</span></div>
-                        <div class="flex justify-between"><span>Approval Time:</span><span class="text-white font-bold">24–48 Hours</span></div>
-                        <div class="flex justify-between"><span>Terms:</span><span class="text-white font-bold">2–7 Years</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Execution Protocol / How It Works -->
-    <section id="how-it-works" class="py-20 border-b border-slate-border">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-xs uppercase tracking-widest text-cyan-electric font-bold mb-2">Execution Protocol</h2>
-                <p class="text-3xl font-extrabold text-white">3 Steps to Liquidity</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-                <div class="bg-slate-card/90 backdrop-blur-md p-8 rounded-sm border border-slate-border relative">
-                    <div class="text-4xl font-black text-cyan-electric/20 absolute top-4 right-4">01</div>
-                    <h3 class="text-xl font-bold text-white mb-3">Apply Online</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed">Fill out our secure digital application grid in under 2 minutes. No hard credit pulls required for soft review.</p>
-                </div>
-
-                <div class="bg-slate-card/90 backdrop-blur-md p-8 rounded-sm border border-slate-border relative">
-                    <div class="text-4xl font-black text-cyan-electric/20 absolute top-4 right-4">02</div>
-                    <h3 class="text-xl font-bold text-white mb-3">Fast Underwriting</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed">Provide 4 to 12 months of business bank statements. Our algorithmic review returns customized terms in hours.</p>
-                </div>
-
-                <div class="bg-slate-card/90 backdrop-blur-md p-8 rounded-sm border border-slate-border relative">
-                    <div class="text-4xl font-black text-cyan-electric/20 absolute top-4 right-4">03</div>
-                    <h3 class="text-xl font-bold text-white mb-3">Capital Deployed</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed">Accept your term sheet and receive same-day wire transfer directly into your business account.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- MODAL POPUP OVERLAY WRAPPER -->
-    <div id="applicationModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-darkest/80 backdrop-blur-md hidden">
-        <div class="max-w-4xl w-full max-h-[90vh] overflow-y-auto relative modal-animate" id="applicationContainer">
-            <div class="bg-slate-card border-2 border-cyan-electric p-6 sm:p-12 rounded-sm shadow-glow-lg relative">
-                
-                <!-- Close Button -->
-                <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-cyan-electric text-xl font-bold cursor-pointer">✕</button>
-
-                <!-- Header Title -->
-                <div class="text-center mb-8">
-                    <h2 class="text-2xl sm:text-3xl font-black text-white tracking-wider uppercase mb-2">Commercial Funding Application</h2>
-                    <p class="text-xs text-cyan-electric font-mono uppercase tracking-widest">Interactive Underwriting Portal ⚡ Step <span id="currentStepLabel">1</span> of 4</p>
-                </div>
-
-                <!-- Progress Tracker -->
-                <div class="mb-10">
-                    <div class="flex justify-between text-[11px] font-bold text-slate-300 uppercase mb-2">
-                        <span id="stepBadge1" class="text-cyan-electric">01. Business</span>
-                        <span id="stepBadge2">02. Principal</span>
-                        <span id="stepBadge3">03. Documents</span>
-                        <span id="stepBadge4">04. Confirm</span>
-                    </div>
-                    <div class="w-full bg-slate-darkest border border-slate-border h-3 rounded-full overflow-hidden p-0.5">
-                        <div id="progressBar" class="bg-gradient-to-r from-cyan-electric to-blue-500 h-full w-1/4 rounded-full transition-all duration-500 shadow-glow"></div>
-                    </div>
-                </div>
-
-                <form id="leadForm" class="space-y-6">
-                    
-                    <input type="text" name="website_url" class="hidden" tabindex="-1" autocomplete="off">
-                    <input type="hidden" name="email_statements_directly" id="email_statements_directly" value="false">
-
-                    <!-- STEP 1: Business Information -->
-                    <div id="step1" class="step-content active space-y-6">
-                        <div class="border-b border-slate-border pb-4 mb-4">
-                            <h3 class="text-sm font-extrabold text-cyan-electric uppercase tracking-wider">Step 1 / Business Profile</h3>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-xs font-bold text-white uppercase mb-2">Legal / Corporate Name *</label>
-                                <input type="text" name="business_name" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-white uppercase mb-2">DBA Name</label>
-                                <input type="text" name="dba" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                            <div>
-                                <label class="block text-xs font-bold text-white uppercase mb-2">Federal Tax ID (EIN) *</label>
-                                <input type="text" name="ein" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-white uppercase mb-2">Entity Type *</label>
-                                <select name="entity_type" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
-                                    <option value="LLC">LLC</option>
-                                    <option value="Corporation">Corporation</option>
-                                    <option value="Sole Proprietorship">Sole Proprietorship</option>
-                                    <option value="Partnership">Partnership</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-white uppercase mb-2">Category *</label>
-                                <select id="business_category" name="business_category" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
-                                    <option value="Service">Service</option>
-                                    <option value="Retail">Retail</option>
-                                    <option value="Wholesale">Wholesale</option>
-                                    <option value="Restaurant">Restaurant</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-xs font-bold text-white uppercase mb-2">Physical Street Address *</label>
-                                <input type="text" name="business_address" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
-                            </div>
-                            <div class="grid grid-cols-3 gap-2">
-                                <div>
-                                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">City *</label>
-                                    <input type="text" name="business_city" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-2 py-2.5 text-white text-xs">
-                                </div>
-                                <div>
-                                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">State *</label>
-                                    <input type="text" name="business_state" required maxlength="2" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-2 py-2.5 text-white text-xs uppercase">
-                                </div>
-                                <div>
-                                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Zip *</label>
-                                    <input type="text" name="business_zip" required maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-2 py-2.5 text-white text-xs">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-xs font-bold text-white uppercase mb-2">Business Start Date *</label>
-                                <input type="date" name="start_date" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-white uppercase mb-2">Amount Requested ($) *</label>
-                                <input type="text" name="requested_amount" required oninput="this.value = this.value.replace(/[^0-9$,.]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- STEP 2: Principal Information -->
-                    <div id="step2" class="step-content space-y-6">
-                        <div class="border-b border-slate-border pb-4 mb-4">
-                            <h3 class="text-sm font-extrabold text-cyan-electric uppercase tracking-wider">Step 2 / Principal Details</h3>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-xs font-bold text-white uppercase mb-2">First Name *</label>
-                                <input type="text" name="first_name" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-white uppercase mb-2">Last Name *</label>
-                                <input type="text" name="last_name" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-xs font-bold text-white uppercase mb-2">Work Email *</label>
-                                <input type="email" name="email" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-white uppercase mb-2">Cell Phone (10 Digits) *</label>
-                                <input type="tel" name="phone" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-xs font-bold text-white uppercase mb-2">Social Security Number (9 Digits) *</label>
-                                <input type="text" name="ssn" required maxlength="9" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-white uppercase mb-2">Date of Birth *</label>
-                                <input type="date" name="dob" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-xs font-bold text-white uppercase mb-2">Home Address *</label>
-                                <input type="text" name="home_address" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
-                            </div>
-                            <div class="grid grid-cols-3 gap-2">
-                                <div>
-                                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">City *</label>
-                                    <input type="text" name="home_city" required class="w-full bg-slate-darkest border border-slate-border rounded-sm px-2 py-2.5 text-white text-xs">
-                                </div>
-                                <div>
-                                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">State *</label>
-                                    <input type="text" name="home_state" required maxlength="2" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-2 py-2.5 text-white text-xs uppercase">
-                                </div>
-                                <div>
-                                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Zip *</label>
-                                    <input type="text" name="home_zip" required maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-2 py-2.5 text-white text-xs">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- STEP 3: Bank Statements -->
-                    <div id="step3" class="step-content space-y-6">
-                        <div class="border-b border-slate-border pb-4 mb-4">
-                            <h3 class="text-sm font-extrabold text-cyan-electric uppercase tracking-wider">Step 3 / Bank Statement Uploader</h3>
-                            <p class="text-xs text-slate-300 mt-1">Upload 4–12 months of bank statements (PDF format) OR skip and email your agent directly.</p>
-                        </div>
-
-                        <div class="bg-slate-darkest border-2 border-dashed border-cyan-electric/50 hover:border-cyan-electric p-8 text-center rounded-sm cursor-pointer transition-all">
-                            <label for="bank_statements" class="cursor-pointer block">
-                                <span class="text-4xl block mb-2">📄</span>
-                                <span class="text-xs font-extrabold text-white uppercase block mb-1">Select Statement PDFs</span>
-                                <input id="bank_statements" type="file" multiple accept="application/pdf" class="hidden">
-                            </label>
-                            <div id="file_list" class="mt-4 text-xs text-cyan-electric font-bold space-y-1"></div>
-                        </div>
-
-                        <div class="relative flex py-2 items-center">
-                            <div class="flex-grow border-t border-slate-border"></div>
-                            <span class="flex-shrink mx-4 text-xs font-bold uppercase text-slate-400">OR</span>
-                            <div class="flex-grow border-t border-slate-border"></div>
-                        </div>
-
-                        <div class="text-center">
-                            <button type="button" onclick="skipAndEmailAgent()" class="w-full sm:w-auto border border-cyan-electric text-cyan-electric font-extrabold px-6 py-3 rounded-sm hover:bg-cyan-electric hover:text-slate-darkest transition-all text-xs uppercase tracking-wider cursor-pointer">
-                                ✉️ Skip Upload & Email Statements Directly to Agent
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- STEP 4: Digital Signature -->
-                    <div id="step4" class="step-content space-y-6">
-                        <div class="border-b border-slate-border pb-4 mb-4">
-                            <h3 class="text-sm font-extrabold text-cyan-electric uppercase tracking-wider">Step 4 / Certification & Wet Signature</h3>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-white uppercase mb-2">Full Signature Name *</label>
-                            <input type="text" id="signature_input" name="signature_name" required oninput="document.getElementById('sig_preview').textContent = this.value || '';" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
-                            <div class="mt-3 p-4 bg-slate-darkest border border-cyan-electric/40 rounded-sm min-h-[60px]">
-                                <span class="text-[10px] text-slate-300 font-bold uppercase block mb-1">Wet Signature Preview:</span>
-                                <span id="sig_preview" class="wet-signature-font text-3xl text-cyan-electric block"></span>
-                            </div>
-                        </div>
-
-                        <label class="flex items-start space-x-3 text-xs text-cyan-electric font-bold cursor-pointer bg-slate-darkest p-4 rounded-sm border border-slate-border">
-                            <input type="checkbox" name="digital_signature_consent" value="accepted" required class="mt-1 h-4 w-4 bg-slate-darkest border-slate-600 rounded text-cyan-electric focus:ring-0">
-                            <span>MANDATORY DIGITAL SIGNATURE: I certify all submitted underwriting details are accurate and authorize F1 Cash to execute commercial credit reports.</span>
-                        </label>
-                    </div>
-
-                    <!-- Navigation Controls -->
-                    <div class="flex justify-between items-center pt-6 border-t border-slate-border">
-                        <button type="button" id="prevBtn" onclick="changeStep(-1)" class="hidden border border-slate-600 text-white font-bold px-6 py-3 rounded-sm hover:border-cyan-electric transition-all text-xs uppercase cursor-pointer">
-                            ← Back
-                        </button>
-                        <div></div>
-                        <button type="button" id="nextBtn" onclick="changeStep(1)" class="bg-cyan-electric text-slate-darkest font-extrabold px-8 py-3 rounded-sm shadow-glow hover:shadow-glow-lg transition-all text-xs uppercase tracking-wider cursor-pointer">
-                            Next Step ➔
-                        </button>
-                        <button type="submit" id="submitBtn" class="hidden bg-cyan-electric text-slate-darkest font-extrabold px-8 py-3 rounded-sm shadow-glow hover:shadow-glow-lg transition-all text-xs uppercase tracking-widest cursor-pointer">
-                            SUBMIT FUNDING APPLICATION
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+<body class="bg-slate-darkest text-white min-h-screen flex flex-col justify-between p-4 md:p-8">
+  <div class="max-w-xl w-full mx-auto bg-slate-dark border-2 border-neon-cyan p-6 md:p-10 rounded shadow-2xl">
+    
+    <div class="text-3xl font-black italic tracking-wider mb-6 text-center">
+      F1<span class="text-neon-cyan">CASH</span>
     </div>
 
-    <!-- Footer -->
-    <footer id="contact" class="bg-slate-darkest border-t border-slate-border py-12 text-xs text-slate-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div>
-                <span class="text-xl font-black text-white italic tracking-widest">F1<span class="text-cyan-electric">CASH</span></span>
-                <p class="mt-1 text-slate-300">Commercial Capital Advisory & Brokerage Services.</p>
-            </div>
-            <div class="text-slate-400 text-[11px]">&copy; 2026 F1 Cash. All rights reserved.</div>
+    <form id="fundingForm" class="space-y-6">
+      <!-- Honeypot Anti-Spam Field -->
+      <input type="text" name="website_url" id="website_url" style="display:none" tabindex="-1" autocomplete="off">
+
+      <!-- 01 / Personal Information -->
+      <div class="space-y-4">
+        <h2 class="text-xs font-extrabold uppercase text-neon-cyan tracking-widest border-l-2 border-neon-cyan pl-2">01 / Personal Information</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">First Name *</label><input type="text" name="first_name" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Last Name *</label><input type="text" name="last_name" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
         </div>
-    </footer>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Work Email *</label><input type="email" name="email" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Phone Number *</label><input type="tel" name="phone" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">SSN *</label><input type="text" name="ssn" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Date of Birth *</label><input type="date" name="dob" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+        </div>
+      </div>
 
-    <!-- Form & Modal Script -->
-    <script>
-        let currentStep = 1;
-        const totalSteps = 4;
+      <!-- 02 / Home Address -->
+      <div class="space-y-4 pt-4 border-t border-slate-border">
+        <h2 class="text-xs font-extrabold uppercase text-neon-cyan tracking-widest border-l-2 border-neon-cyan pl-2">02 / Home Address</h2>
+        <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Home Street Address *</label><input type="text" name="home_address" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+        <div class="grid grid-cols-3 gap-2">
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">City *</label><input type="text" name="home_city" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">State *</label><input type="text" name="home_state" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Zip *</label><input type="text" name="home_zip" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+        </div>
+      </div>
 
-        const SUCCESS_STORIES = {
-            "Service": [
-                { title: "$180,000 HVAC Fleet Expansion", metric: "+140% Quarterly Revenue", story: "An Austin HVAC service contractor secured $180,000 in working capital within 6 hours. They acquired 3 new service vans and hired 4 certified technicians, doubling their daily call capacity." }
-            ],
-            "Retail": [
-                { title: "$250,000 Q4 Inventory Liquidity", metric: "+210% Holiday Sales", story: "A boutique retail chain accessed $250,000 in 12 hours to lock in pre-season inventory discounts before peak Q4 shopping, yielding record revenue." }
-            ],
-            "Wholesale": [
-                { title: "$350,000 Import Logistics Expansion", metric: "10-Day Turnaround", story: "A regional beverage distributor secured $350k working capital to clear customs and fulfill nationwide supermarket purchase orders seamlessly." }
-            ],
-            "Restaurant": [
-                { title: "$140,000 Kitchen Equipment Overhaul", metric: "+45% Daily Covers", story: "A fine dining steakhouse deployed $140,000 in equipment capital to install commercial combi-ovens and expand patio seating before summer season." }
-            ],
-            "Other": [
-                { title: "$240,000 Equipment Acquisition", metric: "+180% Production Output", story: "A manufacturing startup secured 100% equipment financing to purchase CNC milling machines, cutting job production times in half." }
-            ]
-        };
+      <!-- 03 / Business Details -->
+      <div class="space-y-4 pt-4 border-t border-slate-border">
+        <h2 class="text-xs font-extrabold uppercase text-neon-cyan tracking-widest border-l-2 border-neon-cyan pl-2">03 / Business Details</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Legal Business Name *</label><input type="text" name="business_name" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Federal Tax ID (EIN) *</label><input type="text" name="ein" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Entity Type / Category *</label><input type="text" name="entity_type" required placeholder="e.g. LLC / Retail" class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">START DATE *</label><input type="text" name="start_date" required placeholder="MM-YYYY" maxlength="7" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Requested Amount ($) *</label><input type="text" name="requested_amount" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+        </div>
+        <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Business Street Address *</label><input type="text" name="business_address" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+        <div class="grid grid-cols-3 gap-2">
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">City *</label><input type="text" name="business_city" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">State *</label><input type="text" name="business_state" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Zip *</label><input type="text" name="business_zip" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+        </div>
+      </div>
 
-        function getRandomStory(category) {
-            const list = SUCCESS_STORIES[category] || SUCCESS_STORIES["Other"];
-            return list[Math.floor(Math.random() * list.length)];
-        }
+      <!-- 04 / Verification & Documents -->
+      <div class="space-y-4 pt-4 border-t border-slate-border">
+        <h2 class="text-xs font-extrabold uppercase text-neon-cyan tracking-widest border-l-2 border-neon-cyan pl-2">04 / Verification & Documents</h2>
+        <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Upload Bank Statements</label><input type="file" id="formFiles" multiple accept=".pdf,.png,.jpg,.jpeg" class="w-full text-xs text-slate-300 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-neon-cyan file:text-slate-darkest font-semibold cursor-pointer"></div>
+        <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Digital Signature Name *</label><input type="text" name="signature_name" required placeholder="Type Full Legal Name" class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+        <div class="flex items-center space-x-2 pt-2">
+          <input type="checkbox" name="digital_signature_consent" id="consent" required class="w-4 h-4 accent-neon-cyan">
+          <label for="consent" class="text-xs text-slate-300">I authorize F1 Cash to perform credit pulls and process underwriting documents.</label>
+        </div>
+      </div>
 
-        function openModal() {
-            currentStep = 1;
-            updateStepUI();
-            document.getElementById('applicationModal').classList.remove('hidden');
-        }
+      <button type="submit" id="submitBtn" class="w-full bg-neon-cyan text-slate-darkest font-extrabold py-3 rounded text-xs uppercase tracking-wider hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all">
+        Submit Funding Application
+      </button>
 
-        function closeModal() {
-            document.getElementById('applicationModal').classList.add('hidden');
-        }
+      <div id="formStatus" class="text-xs font-bold text-center"></div>
+    </form>
+  </div>
 
-        function updateStepUI() {
-            document.querySelectorAll('.step-content').forEach((el, index) => {
-                if (index + 1 === currentStep) {
-                    el.classList.add('active');
-                } else {
-                    el.classList.remove('active');
-                }
-            });
+  <script>
+    const WEB_APP_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL"; // <-- Replace with your live web app deployment URL
 
-            document.getElementById('currentStepLabel').textContent = currentStep;
-            document.getElementById('progressBar').style.width = `${(currentStep / totalSteps) * 100}%`;
+    document.getElementById('fundingForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      const status = document.getElementById('formStatus');
+      btn.disabled = true;
+      btn.innerText = 'PROCESSING APPLICATION...';
+      status.innerText = '';
 
-            for (let i = 1; i <= totalSteps; i++) {
-                const badge = document.getElementById(`stepBadge${i}`);
-                if (i <= currentStep) {
-                    badge.classList.add('text-cyan-electric', 'font-bold');
-                } else {
-                    badge.classList.remove('text-cyan-electric', 'font-bold');
-                }
-            }
+      const formDataObj = {};
+      const formData = new FormData(this);
+      formData.forEach((value, key) => { if(key !== 'files') formDataObj[key] = value; });
+      formDataObj.digital_signature_consent = document.getElementById('consent').checked;
 
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const submitBtn = document.getElementById('submitBtn');
+      const fileInput = document.getElementById('formFiles');
+      if(fileInput.files.length > 0) {
+        const promises = Array.from(fileInput.files).map(file => new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve({ name: file.name, mimeType: file.type, base64: reader.result });
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        }));
+        try { formDataObj.files = await Promise.all(promises); } catch(err) { console.error(err); }
+      }
 
-            if (currentStep === 1) {
-                prevBtn.classList.add('hidden');
-            } else {
-                prevBtn.classList.remove('hidden');
-            }
-
-            if (currentStep === totalSteps) {
-                nextBtn.classList.add('hidden');
-                submitBtn.classList.remove('hidden');
-            } else {
-                nextBtn.classList.remove('hidden');
-                submitBtn.classList.add('hidden');
-            }
-        }
-
-        function validateCurrentStep() {
-            const currentStepEl = document.getElementById(`step${currentStep}`);
-            const requiredInputs = currentStepEl.querySelectorAll('[required]');
-            let isValid = true;
-
-            requiredInputs.forEach(input => {
-                if (!input.checkValidity()) {
-                    input.reportValidity();
-                    isValid = false;
-                    return false;
-                }
-            });
-
-            return isValid;
-        }
-
-        function changeStep(delta) {
-            if (delta === 1 && !validateCurrentStep()) {
-                return;
-            }
-
-            currentStep += delta;
-            if (currentStep < 1) currentStep = 1;
-            if (currentStep > totalSteps) currentStep = totalSteps;
-
-            updateStepUI();
-            document.getElementById('applicationContainer').scrollTop = 0;
-        }
-
-        function skipAndEmailAgent() {
-            document.getElementById('email_statements_directly').value = "true";
-            const businessName = document.querySelector('input[name="business_name"]').value || "Application";
-            
-            const subject = encodeURIComponent(`Bank Statements for ${businessName}`);
-            const body = encodeURIComponent(`Hello F1 Cash Underwriting Team,\n\nAttached are the bank statements for ${businessName}.\n\nThank you!`);
-            window.open(`mailto:info@f1cash.net?subject=${subject}&body=${body}`, '_blank');
-
-            changeStep(1);
-        }
-
-        const fileInput = document.getElementById('bank_statements');
-        const fileListDisplay = document.getElementById('file_list');
-        const MAX_TOTAL_BYTES = 25 * 1024 * 1024;
-
-        fileInput.addEventListener('change', () => {
-            fileListDisplay.innerHTML = '';
-            let totalBytes = 0;
-            let validFiles = true;
-
-            if (fileInput.files.length > 0) {
-                Array.from(fileInput.files).forEach(file => {
-                    if (file.type !== 'application/pdf') {
-                        alert(`File "${file.name}" is not a PDF. Please select PDF files only.`);
-                        validFiles = false;
-                        return;
-                    }
-                    totalBytes += file.size;
-                    const item = document.createElement('div');
-                    item.textContent = `✓ Attached: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
-                    fileListDisplay.appendChild(item);
-                });
-
-                if (!validFiles) {
-                    fileInput.value = '';
-                    fileListDisplay.innerHTML = '';
-                    return;
-                }
-
-                if (totalBytes > MAX_TOTAL_BYTES) {
-                    alert(`Total upload size exceeds 25 MB limit (${(totalBytes / 1024 / 1024).toFixed(2)} MB). Please select fewer or smaller files.`);
-                    fileInput.value = '';
-                    fileListDisplay.innerHTML = '';
-                }
-            }
+      try {
+        const response = await fetch(WEB_APP_URL, {
+          method: "POST",
+          body: JSON.stringify(formDataObj),
+          headers: { "Content-Type": "text/plain;charset=utf-8" }
         });
+        const result = await response.json();
 
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxGu949gNHV5WcVrZE3YrRqCHfn7W_7c1phj2izPMAn0gLYr-w2Z6GJ21zS-rul108/exec";
-        const form = document.getElementById('leadForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const container = document.getElementById('applicationContainer');
-
-        function readFileAsBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = () => resolve({
-                    name: file.name,
-                    mimeType: file.type,
-                    base64: reader.result
-                });
-                reader.onerror = error => reject(error);
-                reader.readAsDataURL(file);
-            });
+        if (result.status === "success") {
+          status.className = "text-xs font-bold text-green-400 text-center";
+          status.innerText = "✓ Application successfully submitted and logged!";
+          btn.innerText = "SUBMISSION COMPLETE";
+          this.reset();
+        } else {
+          throw new Error(result.message || "Unknown server error.");
         }
-
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            const honeypot = form.querySelector('input[name="website_url"]');
-            if (honeypot && honeypot.value.trim() !== '') {
-                return;
-            }
-
-            submitBtn.disabled = true;
-            submitBtn.innerText = 'PACKAGING & UPLOADING...';
-
-            const formData = new FormData(form);
-            const object = Object.fromEntries(formData);
-
-            const categorySelect = document.getElementById('business_category');
-            const selectedCategory = categorySelect ? categorySelect.value : "Other";
-            const story = getRandomStory(selectedCategory);
-
-            const filesInput = document.getElementById('bank_statements');
-            let filePromises = [];
-            if (filesInput.files.length > 0) {
-                filePromises = Array.from(filesInput.files).map(readFileAsBase64);
-            }
-
-            try {
-                const uploadedFiles = await Promise.all(filePromises);
-                object.files = uploadedFiles;
-
-                await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(object)
-                });
-
-                container.innerHTML = `
-                    <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-cyan-electric text-xl font-bold cursor-pointer">✕</button>
-                    <div class="bg-slate-card/95 border-2 border-cyan-electric p-8 sm:p-12 rounded-sm shadow-glow-lg text-center space-y-6 max-w-2xl mx-auto backdrop-blur-xl">
-                        <div class="inline-block bg-cyan-electric/10 border border-cyan-electric px-4 py-1.5 rounded-full text-xs font-mono text-cyan-electric uppercase tracking-widest">
-                            ⚡ Application Underwriting Initiated
-                        </div>
-                        
-                        <h2 class="text-3xl font-black text-white uppercase tracking-tight">
-                            You're One Step Away From <br>
-                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-electric to-blue-400">Unlocking Growth Capital</span>
-                        </h2>
-                        
-                        <p class="text-sm text-slate-300">Your application has been received. Our underwriting team is reviewing your files right now.</p>
-                        
-                        <div class="bg-slate-darkest/90 border border-slate-border p-6 rounded-sm text-left relative overflow-hidden">
-                            <div class="text-[10px] uppercase font-bold text-cyan-electric tracking-widest mb-1">Recent ${selectedCategory} Case Study</div>
-                            <h3 class="text-lg font-black text-white mb-1">${story.title}</h3>
-                            <div class="inline-block bg-cyan-electric text-slate-darkest font-black text-xs px-2 py-0.5 rounded mb-3">${story.metric}</div>
-                            <p class="text-xs text-slate-300 leading-relaxed italic">"${story.story}"</p>
-                        </div>
-
-                        <div class="bg-slate-darkest/60 border border-slate-border p-4 rounded-sm">
-                            <p class="text-xs text-slate-300">An underwriting advisor will reach out to you within 4 business hours.</p>
-                        </div>
-                    </div>
-                `;
-
-            } catch (error) {
-                console.error('Error submitting application:', error);
-                submitBtn.disabled = false;
-                submitBtn.innerText = 'SUBMIT FUNDING APPLICATION';
-            }
-        });
-    </script>
+      } catch (err) {
+        status.className = "text-xs font-bold text-red-400 text-center";
+        status.innerText = "Submission failed: " + err.message;
+        btn.disabled = false;
+        btn.innerText = "SUBMIT FUNDING APPLICATION";
+      }
+    });
+  </script>
 </body>
 </html>
