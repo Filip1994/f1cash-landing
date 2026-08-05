@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>F1 CASH | Commercial Capital Advisory</title>
-  <!-- Custom Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='18' font-family='sans-serif' font-weight='900' font-size='16' fill='%2300F0FF'>F1</text></svg>">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -30,80 +29,40 @@
     </div>
 
     <form id="fundingForm" class="space-y-6">
-      <!-- Honeypot -->
       <input type="text" name="website_url" id="website_url" style="display:none" tabindex="-1" autocomplete="off">
 
-      <!-- Step 1: Personal Details -->
       <div class="space-y-4">
         <h2 class="text-xs font-extrabold uppercase text-neon-cyan tracking-widest border-l-2 border-neon-cyan pl-2">01 / Personal Information</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">First Name *</label>
-            <input type="text" name="first_name" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white">
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Last Name *</label>
-            <input type="text" name="last_name" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white">
-          </div>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">First Name *</label><input type="text" name="first_name" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Last Name *</label><input type="text" name="last_name" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Work Email *</label>
-            <input type="email" name="email" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white">
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Phone Number *</label>
-            <input type="tel" name="phone" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white">
-          </div>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Work Email *</label><input type="email" name="email" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Phone Number *</label><input type="tel" name="phone" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">SSN *</label>
-            <input type="text" name="ssn" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white">
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Date of Birth *</label>
-            <input type="date" name="dob" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white">
-          </div>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">SSN *</label><input type="text" name="ssn" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Date of Birth *</label><input type="date" name="dob" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
         </div>
       </div>
 
-      <!-- Step 2: Business Details -->
       <div class="space-y-4 pt-4 border-t border-slate-border">
         <h2 class="text-xs font-extrabold uppercase text-neon-cyan tracking-widest border-l-2 border-neon-cyan pl-2">02 / Business Details</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Legal Business Name *</label>
-            <input type="text" name="business_name" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white">
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Federal Tax ID (EIN) *</label>
-            <input type="text" name="ein" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white">
-          </div>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Legal Business Name *</label><input type="text" name="business_name" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Federal Tax ID (EIN) *</label><input type="text" name="ein" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">START DATE *</label>
-            <input type="text" name="start_date" required placeholder="MM-YYYY" maxlength="7" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white">
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Requested Amount ($) *</label>
-            <input type="text" name="requested_amount" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white">
-          </div>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">START DATE *</label><input type="text" name="start_date" required placeholder="MM-YYYY" maxlength="7" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
+          <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Requested Amount ($) *</label><input type="text" name="requested_amount" required class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
         </div>
       </div>
 
-      <!-- Step 3: Files & Signatures -->
       <div class="space-y-4 pt-4 border-t border-slate-border">
         <h2 class="text-xs font-extrabold uppercase text-neon-cyan tracking-widest border-l-2 border-neon-cyan pl-2">03 / Verification & Documents</h2>
-        <div>
-          <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Upload Bank Statements (PDF/Images)</label>
-          <input type="file" id="formFiles" multiple accept=".pdf,.png,.jpg,.jpeg" class="w-full text-xs text-slate-300 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-neon-cyan file:text-slate-darkest hover:file:bg-cyan-300 cursor-pointer">
-        </div>
-        <div>
-          <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Digital Signature Name *</label>
-          <input type="text" name="signature_name" required placeholder="Type Full Legal Name" class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white">
-        </div>
+        <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Upload Bank Statements</label><input type="file" id="formFiles" multiple accept=".pdf,.png,.jpg,.jpeg" class="w-full text-xs text-slate-300 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-neon-cyan file:text-slate-darkest font-semibold cursor-pointer"></div>
+        <div><label class="block text-xs font-bold text-slate-300 uppercase mb-1">Digital Signature Name *</label><input type="text" name="signature_name" required placeholder="Type Full Legal Name" class="w-full bg-slate-darkest border border-slate-border rounded px-3 py-2 text-sm text-white"></div>
         <div class="flex items-center space-x-2 pt-2">
           <input type="checkbox" name="digital_signature_consent" id="consent" required class="w-4 h-4 accent-neon-cyan">
           <label for="consent" class="text-xs text-slate-300">I authorize F1 Cash to perform credit pulls and process underwriting documents.</label>
@@ -119,7 +78,7 @@
   </div>
 
   <script>
-    const WEB_APP_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL"; // <-- Paste your deployment URL here
+    const WEB_APP_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL"; // <-- Replace with your live web app deployment URL
 
     document.getElementById('fundingForm').addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -134,33 +93,22 @@
       formData.forEach((value, key) => { if(key !== 'files') formDataObj[key] = value; });
       formDataObj.digital_signature_consent = document.getElementById('consent').checked;
 
-      // Handle File Base64 Conversions
       const fileInput = document.getElementById('formFiles');
-      const filesArr = [];
       if(fileInput.files.length > 0) {
-        const promises = Array.from(fileInput.files).map(file => {
-          return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () => resolve({ name: file.name, mimeType: file.type, base64: reader.result });
-            reader.onerror = reject;
-            reader.readAsDataURL(file);
-          });
-        });
-        try {
-          formDataObj.files = await Promise.all(promises);
-        } catch(err) {
-          console.error("File processing error", err);
-        }
+        const promises = Array.from(fileInput.files).map(file => new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve({ name: file.name, mimeType: file.type, base64: reader.result });
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        }));
+        try { formDataObj.files = await Promise.all(promises); } catch(err) { console.error(err); }
       }
 
-      // True CORS Fetch using text/plain to avoid preflight issues
       try {
         const response = await fetch(WEB_APP_URL, {
           method: "POST",
           body: JSON.stringify(formDataObj),
-          headers: {
-            "Content-Type": "text/plain;charset=utf-8"
-          }
+          headers: { "Content-Type": "text/plain;charset=utf-8" }
         });
         const result = await response.json();
 
