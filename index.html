@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>F1 CASH | Commercial Capital Advisory & Underwriting</title>
     
+    <!-- Custom Branded Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='18' font-family='sans-serif' font-weight='900' font-size='16' fill='%2300F0FF'>F1</text></svg>">
+
     <!-- TAILWIND CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -48,7 +51,6 @@
             background-attachment: fixed;
         }
 
-        /* FIX WHITE-ON-WHITE TEXT & AUTOFILL BUG */
         input, select, textarea {
             background-color: #131B31 !important;
             color: #FFFFFF !important;
@@ -73,7 +75,6 @@
             transition: background-color 5000s ease-in-out 0s;
         }
 
-        /* MODAL POPUP ANIMATION */
         @keyframes modalPop {
             0% { transform: scale(0.9); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
@@ -639,7 +640,7 @@
             }
         });
 
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxGu949gNHV5WcVrZE3YrRqCHfn7W_7c1phj2izPMAn0gLYr-w2Z6GJ21zS-rul108/exec";
+        const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL"; // <-- Replace with your live web app deployment URL
         const form = document.getElementById('leadForm');
         const submitBtn = document.getElementById('submitBtn');
         const container = document.getElementById('applicationContainer');
@@ -670,6 +671,7 @@
 
             const formData = new FormData(form);
             const object = Object.fromEntries(formData);
+            object.digital_signature_consent = document.querySelector('input[name="digital_signature_consent"]').checked;
 
             const categorySelect = document.getElementById('business_category');
             const selectedCategory = categorySelect ? categorySelect.value : "Other";
