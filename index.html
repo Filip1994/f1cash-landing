@@ -290,7 +290,7 @@
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Federal Tax ID (EIN) *</label>
-                                <input type="text" name="ein" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" onblur="formatEIN(this)" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
+                                <input type="text" name="ein" required maxlength="9" oninput="this.value = this.value.replace(/[^0-9]/g, '')" onblur="formatEIN(this)" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Entity Type *</label>
@@ -375,14 +375,14 @@
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Cell Phone (10 Digits) *</label>
-                                <input type="tel" name="phone" required maxlength="14" oninput="this.value = this.value.replace(/[^0-9]/g, '')" onblur="formatPhone(this)" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
+                                <input type="tel" name="phone" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" onblur="formatPhone(this)" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Social Security Number (9 Digits) *</label>
-                                <input type="text" name="ssn" required maxlength="9" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
+                                <input type="text" name="ssn" required maxlength="9" oninput="this.value = this.value.replace(/[^0-9]/g, '')" onblur="formatSSN(this)" class="w-full bg-slate-darkest border border-slate-border rounded-sm px-4 py-3 text-white text-sm">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-white uppercase mb-2">Date of Birth *</label>
@@ -516,16 +516,29 @@
         }
 
         function formatPhone(input) {
-            let value = input.value.replace(/[^0-9]/g, '');
+            let value = input.value.replace(/[^0-9]/g, '').slice(0, 10);
             if (value.length === 10) {
                 input.value = `(${value.slice(0, 3)}) ${value.slice(3, 6)}-${value.slice(6, 10)}`;
+            } else {
+                input.value = value;
             }
         }
 
         function formatEIN(input) {
-            let value = input.value.replace(/[^0-9]/g, '');
+            let value = input.value.replace(/[^0-9]/g, '').slice(0, 9);
             if (value.length === 9) {
                 input.value = `${value.slice(0, 2)}-${value.slice(2, 9)}`;
+            } else {
+                input.value = value;
+            }
+        }
+
+        function formatSSN(input) {
+            let value = input.value.replace(/[^0-9]/g, '').slice(0, 9);
+            if (value.length === 9) {
+                input.value = `${value.slice(0, 2)}-${value.slice(2, 9)}`;
+            } else {
+                input.value = value;
             }
         }
 
